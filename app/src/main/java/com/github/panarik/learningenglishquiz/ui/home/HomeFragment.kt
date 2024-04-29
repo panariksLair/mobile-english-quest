@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.github.panarik.learningenglishquiz.databinding.FragmentHomeBinding
+import com.github.panarik.learningenglishquiz.ui.home.model.HomeViewModel
 
 class HomeFragment : Fragment() {
 
@@ -14,8 +15,9 @@ class HomeFragment : Fragment() {
     private lateinit var model: HomeViewModel
 
     override fun onCreateView(inf: LayoutInflater, cont: ViewGroup?, state: Bundle?): View {
-        model = ViewModelProvider(this)[HomeViewModel::class.java]
         binding = FragmentHomeBinding.inflate(inf, cont, false)
+        model = ViewModelProvider(this)[HomeViewModel::class.java]
+        model.init(this)
         return binding!!.root
     }
 

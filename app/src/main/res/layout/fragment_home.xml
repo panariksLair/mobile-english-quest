@@ -28,14 +28,42 @@
         android:layout_marginEnd="8dp"
         android:textAlignment="center"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/home_answer_1_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/home_summary_text" />
 
     <Button
+        android:id="@+id/home_answer_1_text"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/home_answer_2_text" />
+
+    <Button
+        android:id="@+id/home_answer_2_text"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/home_answer_3_text" />
+
+    <Button
+        android:id="@+id/home_answer_3_text"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/home_answer_4_text" />
+
+    <Button
         android:id="@+id/home_answer_4_text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="40dp"
