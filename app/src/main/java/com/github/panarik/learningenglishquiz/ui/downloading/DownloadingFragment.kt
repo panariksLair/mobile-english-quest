@@ -1,4 +1,4 @@
-package com.github.panarik.learningenglishquiz
+package com.github.panarik.learningenglishquiz.ui.downloading
 
 import android.os.Bundle
 import android.os.Handler
@@ -9,6 +9,9 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import com.github.panarik.learningenglishquiz.R
 import com.github.panarik.learningenglishquiz.databinding.FragmentDownloadingBinding
 
 private const val UI_ANIMATION_DELAY = 300
@@ -16,6 +19,7 @@ private const val UI_ANIMATION_DELAY = 300
 class DownloadingFragment : Fragment() {
 
     private var binding: FragmentDownloadingBinding? = null
+    private lateinit var model: DownloadingViewModel
     private val hideHandler = Handler(Looper.myLooper()!!)
     private val fullScreenRunnable = Runnable {
         val flags =
@@ -29,18 +33,16 @@ class DownloadingFragment : Fragment() {
         (activity as? AppCompatActivity)?.supportActionBar?.hide()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentDownloadingBinding.inflate(inflater, container, false)
+    override fun onCreateView(infl: LayoutInflater, cont: ViewGroup?, state: Bundle?): View? {
+        binding = FragmentDownloadingBinding.inflate(infl, cont, false)
+        model = ViewModelProvider(this)[DownloadingViewModel::class.java].init(this)
         return binding!!.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fullScreenMode()
+        model.downloadQuiz()
     }
 
     override fun onResume() {
@@ -56,6 +58,11 @@ class DownloadingFragment : Fragment() {
         show()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
+
     private fun fullScreenMode() {
         hideHandler.postDelayed(fullScreenRunnable, UI_ANIMATION_DELAY.toLong())
     }
@@ -67,11 +74,13 @@ class DownloadingFragment : Fragment() {
 
     private fun delayedHide(delayMillis: Int) {
         hideHandler.removeCallbacks { fullScreenMode() }
-        hideHandler.postDelayed( { fullScreenMode() }, delayMillis.toLong())
+        hideHandler.postDelayed({ fullScreenMode() }, delayMillis.toLong())
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding = null
+    fun startQuizFragment() {
+        this.binding?.root?.let {
+            // ToDo: 1. Create navigation args with downloaded Quiz data.
+            Navigation.findNavController(it).navigate(R.id.action_downloadingFragment_to_nav_home)
+        }
     }
 }

@@ -28,7 +28,7 @@
         tools:layout="@layout/fragment_slideshow" />
     <fragment
         android:id="@+id/downloadingFragment2"
-        android:name="com.github.panarik.learningenglishquiz.DownloadingFragment"
+        android:name="com.github.panarik.learningenglishquiz.ui.downloading.DownloadingFragment"
         android:label="fragment_downloading"
         tools:layout="@layout/fragment_downloading" >
         <action

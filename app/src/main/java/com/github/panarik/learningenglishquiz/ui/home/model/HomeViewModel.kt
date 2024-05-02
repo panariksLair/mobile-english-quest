@@ -21,11 +21,8 @@ class HomeViewModel : ViewModel() {
      *
      */
     fun createQuiz() {
-        if (currentQuiz.value == null) {
-            fragment.startLoadingFragment()
-        } else {
-            // 2. Update fragment with Quiz data.
-        }
+        // 1. Check current quiz from Fragment args.
+        // 2. If ar
     }
 
     fun startQuiz() {

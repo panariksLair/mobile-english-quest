@@ -5,4 +5,8 @@ data class Quiz(
     val question: String,
     val wrong_answers: List<String>,
     val right_answer: String
-    )
+) {
+
+    fun isValid() =
+        summary.isNotEmpty() && question.isNotEmpty() && wrong_answers.isNotEmpty() && right_answer.isNotEmpty()
+}
