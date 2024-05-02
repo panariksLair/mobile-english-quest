@@ -83,7 +83,7 @@ class DownloadingFragment : Fragment() {
         Log.d(TAG, "Start Home fragment.")
         this.binding?.root?.let {
             val action =
-                DownloadingFragmentDirections.actionDownloadingFragmentToNavHome("test argument")
+                DownloadingFragmentDirections.toHomeFragment("test argument")
             Navigation.findNavController(it).navigate(action)
         }
     }

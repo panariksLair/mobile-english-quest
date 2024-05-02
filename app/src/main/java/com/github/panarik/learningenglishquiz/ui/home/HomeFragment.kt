@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import com.github.panarik.learningenglishquiz.R
+import androidx.navigation.fragment.navArgs
 import com.github.panarik.learningenglishquiz.databinding.FragmentHomeBinding
 import com.github.panarik.learningenglishquiz.ui.home.model.HomeViewModel
 
@@ -15,6 +15,7 @@ class HomeFragment : Fragment() {
 
     private var binding: FragmentHomeBinding? = null
     private lateinit var model: HomeViewModel
+    val args: HomeFragmentArgs by navArgs()
 
     override fun onCreateView(inf: LayoutInflater, cont: ViewGroup?, state: Bundle?): View {
         binding = FragmentHomeBinding.inflate(inf, cont, false)
@@ -36,7 +37,7 @@ class HomeFragment : Fragment() {
     fun startLoadingFragment() {
         binding?.root?.let {
             val action =
-                HomeFragmentDirections.actionNavHomeToDownloadingFragment("test argument")
+                HomeFragmentDirections.toDownloadingFragment("test argument")
             Navigation.findNavController(it).navigate(action)
         }
     }

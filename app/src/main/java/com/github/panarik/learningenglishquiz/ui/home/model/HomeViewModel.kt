@@ -1,5 +1,7 @@
 package com.github.panarik.learningenglishquiz.ui.home.model
 
+import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.github.panarik.learningenglishquiz.ui.home.HomeFragment
@@ -10,8 +12,7 @@ class HomeViewModel : ViewModel() {
     private val currentQuiz = MutableLiveData<Quiz>()
     private val newQuiz = MutableLiveData<Quiz>()
 
-
-    fun init(fragment: HomeFragment):HomeViewModel {
+    fun init(fragment: HomeFragment): HomeViewModel {
         this.fragment = fragment
         return this
     }
@@ -21,9 +22,11 @@ class HomeViewModel : ViewModel() {
      *
      */
     fun createQuiz() {
-        fragment.startLoadingFragment()
-        // 1. Check current quiz from Fragment args.
-        // 2. If ar
+        Toast.makeText(fragment.context, "Args: ${fragment.args.testArgument}", LENGTH_SHORT)
+            .show()
+        if (fragment.args.testArgument != "test argument") {
+            fragment.startLoadingFragment()
+        }
     }
 
     fun startQuiz() {

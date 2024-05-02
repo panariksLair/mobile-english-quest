@@ -44,7 +44,7 @@ class DownloadingViewModel : ViewModel() {
             override fun onFailure(call: Call, e: IOException) {
                 Log.e(TAG, "Failed to request quiz. Original exception: ${e.message}")
                 fragment.activity?.runOnUiThread {
-                    quiz.value = Quiz("", "", emptyList(), "")
+                    quiz.value = null
                 }
             }
 
@@ -75,7 +75,10 @@ class DownloadingViewModel : ViewModel() {
         val quiz: Quiz? = try {
             val quizSession =
                 jacksonObjectMapper().readValue(body, QuizSession::class.java)
-            Log.d(TAG, "Quiz parsed successfully. Quiz: ${quizSession.quiz}")
+            Log.d(
+                TAG,
+                "Quiz session is parsed successfully. Session id=${quizSession.sessionId} quiz=${quizSession.quiz}"
+            )
             quizSession.quiz
         } catch (e: Exception) {
             Log.e(TAG, "Error caught during Quiz parsing. Original exception: ${e.message}")
