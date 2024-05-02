@@ -25,6 +25,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         model.createQuiz()
+
     }
 
     override fun onDestroyView() {
@@ -34,8 +35,9 @@ class HomeFragment : Fragment() {
 
     fun startLoadingFragment() {
         binding?.root?.let {
-            Navigation.findNavController(it).navigate(R.id.action_nav_home_to_downloadingFragment)
+            val action =
+                HomeFragmentDirections.actionNavHomeToDownloadingFragment("test argument")
+            Navigation.findNavController(it).navigate(action)
         }
-
     }
 }

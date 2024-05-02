@@ -21,6 +21,7 @@ class HomeViewModel : ViewModel() {
      *
      */
     fun createQuiz() {
+        fragment.startLoadingFragment()
         // 1. Check current quiz from Fragment args.
         // 2. If ar
     }

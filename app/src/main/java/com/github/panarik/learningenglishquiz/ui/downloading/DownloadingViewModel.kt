@@ -1,6 +1,7 @@
 package com.github.panarik.learningenglishquiz.ui.downloading
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
@@ -23,7 +24,12 @@ class DownloadingViewModel : ViewModel() {
     fun init(fragment: DownloadingFragment): DownloadingViewModel {
         this.fragment = fragment
         quiz.observe(fragment.viewLifecycleOwner) {
-            if (it != null) fragment.startQuizFragment()
+            if (it != null) {
+                fragment.startQuizFragment()
+            } else {
+                Toast.makeText(fragment.context, "Received empty Quiz", Toast.LENGTH_SHORT).show()
+                downloadQuiz()
+            }
         }
         return this
     }
@@ -47,7 +53,7 @@ class DownloadingViewModel : ViewModel() {
                 val code = response.code
                 val body = response.body?.string() ?: ""
                 if (code == 200) {
-                    Log.d(TAG, "Quiz downloaded successfully.")
+                    Log.d(TAG, "Quiz downloaded successfully. Quiz body: $body")
                     buildQuiz(body)
                 } else {
                     Log.e(
@@ -55,7 +61,7 @@ class DownloadingViewModel : ViewModel() {
                         "Failed to request. Response: code=$code body=${body}"
                     )
                     fragment.activity?.runOnUiThread {
-                        quiz.value = Quiz("", "", emptyList(), "")
+                        quiz.value = null
                     }
                 }
 
@@ -66,17 +72,25 @@ class DownloadingViewModel : ViewModel() {
 
     private fun buildQuiz(body: String) {
         Log.d(TAG, "Parsing Quiz body...")
-        val quizObject: Quiz = try {
+        val quiz: Quiz? = try {
             val quizSession =
                 jacksonObjectMapper().readValue(body, QuizSession::class.java)
-            Log.d(TAG, "Quiz parsed successfully.")
+            Log.d(TAG, "Quiz parsed successfully. Quiz: ${quizSession.quiz}")
             quizSession.quiz
         } catch (e: Exception) {
             Log.e(TAG, "Error caught during Quiz parsing. Original exception: ${e.message}")
-            Quiz("", "", emptyList(), "")
+            null
         }
         fragment.activity?.runOnUiThread {
-            quiz.value = if (quizObject.isValid()) quizObject else null
+            val isValid = quiz?.isValid() == true
+            if (isValid) {
+                Log.d(TAG, "Quiz is valid.")
+                Toast.makeText(fragment.context, "Quiz is valid", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(fragment.context, "Quiz is invalid", Toast.LENGTH_SHORT).show()
+                Log.e(TAG, "Quiz is invalid.")
+            }
+            this.quiz.value = if (isValid) quiz else null
         }
     }
 

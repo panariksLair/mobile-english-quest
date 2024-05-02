@@ -9,10 +9,15 @@
         android:id="@+id/nav_home"
         android:name="com.github.panarik.learningenglishquiz.ui.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_nav_home_to_downloadingFragment"
-            app:destination="@id/downloadingFragment2" />
+            app:destination="@id/downloadingFragment">
+            <argument
+                android:name="testArgument"
+                android:defaultValue="empty"
+                app:argType="string" />
+        </action>
     </fragment>
 
     <fragment
@@ -27,12 +32,17 @@
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
     <fragment
-        android:id="@+id/downloadingFragment2"
+        android:id="@+id/downloadingFragment"
         android:name="com.github.panarik.learningenglishquiz.ui.downloading.DownloadingFragment"
         android:label="fragment_downloading"
-        tools:layout="@layout/fragment_downloading" >
+        tools:layout="@layout/fragment_downloading">
         <action
             android:id="@+id/action_downloadingFragment_to_nav_home"
-            app:destination="@id/nav_home" />
+            app:destination="@id/nav_home">
+            <argument
+                android:name="testArgument"
+                app:argType="string" />
+        </action>
+
     </fragment>
 </navigation>

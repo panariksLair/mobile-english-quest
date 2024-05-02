@@ -3,6 +3,7 @@ package com.github.panarik.learningenglishquiz.ui.downloading
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ import com.github.panarik.learningenglishquiz.R
 import com.github.panarik.learningenglishquiz.databinding.FragmentDownloadingBinding
 
 private const val UI_ANIMATION_DELAY = 300
+private const val TAG = "DownloadingFragment"
 
 class DownloadingFragment : Fragment() {
 
@@ -78,9 +80,11 @@ class DownloadingFragment : Fragment() {
     }
 
     fun startQuizFragment() {
+        Log.d(TAG, "Start Home fragment.")
         this.binding?.root?.let {
-            // ToDo: 1. Create navigation args with downloaded Quiz data.
-            Navigation.findNavController(it).navigate(R.id.action_downloadingFragment_to_nav_home)
+            val action =
+                DownloadingFragmentDirections.actionDownloadingFragmentToNavHome("test argument")
+            Navigation.findNavController(it).navigate(action)
         }
     }
 }
