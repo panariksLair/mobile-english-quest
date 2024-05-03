@@ -11,12 +11,8 @@
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/to_downloadingFragment"
-            app:destination="@id/downloadingFragment"></action>
-        <argument
-            android:name="testArgument"
-            android:defaultValue=""
-            app:argType="string" />
+            android:id="@+id/toDownloadingFragment"
+            app:destination="@id/downloadingFragment"/>
     </fragment>
 
     <fragment
@@ -36,12 +32,7 @@
         android:label="fragment_downloading"
         tools:layout="@layout/fragment_downloading">
         <action
-            android:id="@+id/to_homeFragment"
-            app:destination="@id/nav_home"></action>
-        <argument
-            android:name="testArgument"
-            android:defaultValue=""
-            app:argType="string" />
-
+            android:id="@+id/toHomeFragment"
+            app:destination="@id/nav_home"/>
     </fragment>
 </navigation>

@@ -19,13 +19,13 @@ private const val TAG = "DownloadingViewModel"
 class DownloadingViewModel : ViewModel() {
 
     private lateinit var fragment: DownloadingFragment
-    private val quiz = MutableLiveData<Quiz?>()
+    private val quiz = MutableLiveData<QuizSession?>()
 
     fun init(fragment: DownloadingFragment): DownloadingViewModel {
         this.fragment = fragment
         quiz.observe(fragment.viewLifecycleOwner) {
             if (it != null) {
-                fragment.startQuizFragment()
+                fragment.startQuizFragment(it)
             } else {
                 Toast.makeText(fragment.context, "Received empty Quiz", Toast.LENGTH_SHORT).show()
                 downloadQuiz()
@@ -64,22 +64,20 @@ class DownloadingViewModel : ViewModel() {
                         quiz.value = null
                     }
                 }
-
             }
-
         })
     }
 
     private fun buildQuiz(body: String) {
         Log.d(TAG, "Parsing Quiz body...")
-        val quiz: Quiz? = try {
+        val quiz: QuizSession? = try {
             val quizSession =
                 jacksonObjectMapper().readValue(body, QuizSession::class.java)
             Log.d(
                 TAG,
                 "Quiz session is parsed successfully. Session id=${quizSession.sessionId} quiz=${quizSession.quiz}"
             )
-            quizSession.quiz
+            quizSession
         } catch (e: Exception) {
             Log.e(TAG, "Error caught during Quiz parsing. Original exception: ${e.message}")
             null

@@ -1,10 +1,11 @@
 package com.github.panarik.learningenglishquiz.ui.home.model
 
-import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.github.panarik.learningenglishquiz.ui.home.HomeFragment
+
+private const val TAG = "HomeViewModel"
 
 class HomeViewModel : ViewModel() {
 
@@ -22,17 +23,25 @@ class HomeViewModel : ViewModel() {
      *
      */
     fun createQuiz() {
-        Toast.makeText(fragment.context, "Args: ${fragment.args.testArgument}", LENGTH_SHORT)
-            .show()
-        if (fragment.args.testArgument != "test argument") {
+        val session: QuizSession? =
+            fragment.arguments?.getSerializable("QuizSession") as QuizSession?
+        if (session != null) {
+            Log.d(TAG, "Quiz is ready. Starting Quiz...")
+            startQuiz(session)
+        } else {
+            Log.d(TAG, "Quiz is not ready. Downloading new Quiz...")
             fragment.startLoadingFragment()
         }
+
+
     }
 
-    fun startQuiz() {
-        // 1. Download new Quiz in separated thread.
+    private fun startQuiz(session: QuizSession) {
+        fragment.createScreen(session)
+        // 1. Set views.
         // 2. Run timer
-        // 3. Wait users action and create new fragment
+        // 3. Download new Quiz.
+        // 3. Wait users action and create new fragment with downloaded quiz.
     }
 
 }

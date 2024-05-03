@@ -14,6 +14,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.github.panarik.learningenglishquiz.R
 import com.github.panarik.learningenglishquiz.databinding.FragmentDownloadingBinding
+import com.github.panarik.learningenglishquiz.ui.home.model.Quiz
+import com.github.panarik.learningenglishquiz.ui.home.model.QuizSession
 
 private const val UI_ANIMATION_DELAY = 300
 private const val TAG = "DownloadingFragment"
@@ -79,12 +81,12 @@ class DownloadingFragment : Fragment() {
         hideHandler.postDelayed({ fullScreenMode() }, delayMillis.toLong())
     }
 
-    fun startQuizFragment() {
-        Log.d(TAG, "Start Home fragment.")
-        this.binding?.root?.let {
-            val action =
-                DownloadingFragmentDirections.toHomeFragment("test argument")
-            Navigation.findNavController(it).navigate(action)
+    fun startQuizFragment(quiz: QuizSession) {
+        Log.d(TAG, "Start Home fragment with new Quiz.")
+        val bundle = Bundle().apply { putSerializable("QuizSession", quiz) }
+        binding?.root?.let {
+            Navigation.findNavController(it).navigate(R.id.toHomeFragment, bundle)
         }
     }
 }
+

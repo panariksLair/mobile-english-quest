@@ -1,3 +1,10 @@
 package com.github.panarik.learningenglishquiz.ui.home.model
 
-data class QuizSession(val sessionId: String, val quiz: Quiz)
+import java.io.Serializable
+
+data class QuizSession(val sessionId: String, val quiz: Quiz) : Serializable {
+
+    fun isValid(): Boolean =
+        sessionId.isNotEmpty() && quiz.isValid()
+
+}
