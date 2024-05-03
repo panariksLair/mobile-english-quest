@@ -1,9 +1,12 @@
 package com.github.panarik.learningenglishquiz.ui.home
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -25,7 +28,13 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        model.createQuiz()
+
+        // Wait users answers
+        binding?.homeAnswer0Text?.setOnClickListener { model.checkQuiz(0) }
+        binding?.homeAnswer1Text?.setOnClickListener { model.checkQuiz(1) }
+        binding?.homeAnswer2Text?.setOnClickListener { model.checkQuiz(2) }
+        binding?.homeAnswer3Text?.setOnClickListener { model.checkQuiz(3) }
+        model.startQuiz()
 
     }
 
@@ -41,9 +50,45 @@ class HomeFragment : Fragment() {
     fun createScreen(session: QuizSession) {
         binding?.homeSummaryText?.text = session.quiz.summary
         binding?.homeQuestionText?.text = session.quiz.question
-        binding?.homeAnswer1Text?.text = session.quiz.right_answer
-        binding?.homeAnswer2Text?.text = session.quiz.wrong_answers[0]
-        binding?.homeAnswer3Text?.text = session.quiz.wrong_answers[1]
-        binding?.homeAnswer4Text?.text = session.quiz.wrong_answers[2]
+        binding?.homeAnswer0Text?.text = session.answers?.get(0)?.answer
+        binding?.homeAnswer1Text?.text = session.answers?.get(1)?.answer
+        binding?.homeAnswer2Text?.text = session.answers?.get(2)?.answer
+        binding?.homeAnswer3Text?.text = session.answers?.get(3)?.answer
+    }
+
+    fun finishQuiz(buttonNumber: Int) {
+        when (buttonNumber) {
+            0 -> {
+                binding?.homeAnswer0Text?.setBackgroundColor(Color.GREEN)
+                binding?.homeAnswer1Text?.setBackgroundColor(Color.RED)
+                binding?.homeAnswer2Text?.setBackgroundColor(Color.RED)
+                binding?.homeAnswer3Text?.setBackgroundColor(Color.RED)
+            }
+
+            1 -> {
+                binding?.homeAnswer0Text?.setBackgroundColor(Color.RED)
+                binding?.homeAnswer1Text?.setBackgroundColor(Color.GREEN)
+                binding?.homeAnswer2Text?.setBackgroundColor(Color.RED)
+                binding?.homeAnswer3Text?.setBackgroundColor(Color.RED)
+            }
+
+            2 -> {
+                binding?.homeAnswer0Text?.setBackgroundColor(Color.RED)
+                binding?.homeAnswer1Text?.setBackgroundColor(Color.RED)
+                binding?.homeAnswer2Text?.setBackgroundColor(Color.GREEN)
+                binding?.homeAnswer3Text?.setBackgroundColor(Color.RED)
+            }
+
+            3 -> {
+                binding?.homeAnswer0Text?.setBackgroundColor(Color.RED)
+                binding?.homeAnswer1Text?.setBackgroundColor(Color.RED)
+                binding?.homeAnswer2Text?.setBackgroundColor(Color.RED)
+                binding?.homeAnswer3Text?.setBackgroundColor(Color.GREEN)
+            }
+
+            else -> {
+                Toast.makeText(context, "Unknown answer", LENGTH_SHORT).show()
+            }
+        }
     }
 }
