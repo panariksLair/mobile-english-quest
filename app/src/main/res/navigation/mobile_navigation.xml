@@ -3,16 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/homeFragment">
 
     <fragment
-        android:id="@+id/nav_home"
+        android:id="@+id/homeFragment"
         android:name="com.github.panarik.learningenglishquiz.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/toDownloadingFragment"
             app:destination="@id/downloadingFragment"/>
+        <action
+            android:id="@+id/toHomeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 
     <fragment
@@ -33,6 +36,6 @@
         tools:layout="@layout/fragment_downloading">
         <action
             android:id="@+id/toHomeFragment"
-            app:destination="@id/nav_home"/>
+            app:destination="@id/homeFragment"/>
     </fragment>
 </navigation>

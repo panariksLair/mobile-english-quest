@@ -1,10 +1,14 @@
 package com.github.panarik.learningenglishquiz.ui.home.model
 
+import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.navigation.Navigation
+import com.github.panarik.learningenglishquiz.R
+import com.github.panarik.learningenglishquiz.ui.downloading.QuizDownloader
 import com.github.panarik.learningenglishquiz.ui.home.HomeFragment
 
 private const val TAG = "HomeViewModel"
@@ -12,8 +16,10 @@ private const val TAG = "HomeViewModel"
 class HomeViewModel : ViewModel() {
 
     private lateinit var fragment: HomeFragment
+
+    var gameState: GameStates = GameStates.WAITING_USER_ACTION
     private val currentQuiz = MutableLiveData<QuizSession>()
-    private val newQuiz = MutableLiveData<QuizSession>()
+    val newQuiz = MutableLiveData<QuizSession?>()
 
     fun init(fragment: HomeFragment): HomeViewModel {
         this.fragment = fragment
@@ -37,6 +43,9 @@ class HomeViewModel : ViewModel() {
             answers.toList()
             currentQuiz.value!!.answers = answers
             fragment.createScreen(currentQuiz.value!!)
+
+            // Download next quiz also.
+            QuizDownloader(fragment.activity, newQuiz).downloadQuiz()
         } else {
             Log.d(TAG, "Quiz is not ready. Downloading new Quiz...")
             fragment.startLoadingFragment()
@@ -44,12 +53,15 @@ class HomeViewModel : ViewModel() {
     }
 
     fun checkQuiz(buttonNumber: Int) {
+        currentQuiz.value?.let { fragment.finishQuiz(it) }
         if (currentQuiz.value?.answers?.get(buttonNumber)?.isRight == true) {
-            fragment.finishQuiz(buttonNumber)
+            gameState = GameStates.QUIZ_FINISHED_SUCCESS
             Toast.makeText(fragment.context, "You Won!", LENGTH_SHORT).show()
+            fragment.startNextQuiz()
         } else {
-            fragment.finishQuiz(buttonNumber)
+            gameState = GameStates.QUIZ_FINISHED_FAILED
             Toast.makeText(fragment.context, "You Lose!", LENGTH_SHORT).show()
+            fragment.startNextQuiz()
         }
     }
 
