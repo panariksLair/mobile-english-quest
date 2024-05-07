@@ -2,17 +2,11 @@ package com.github.panarik.learningenglishquiz.ui.downloading
 
 import android.util.Log
 import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.github.panarik.learningenglishquiz.ui.home.model.Quiz
 import com.github.panarik.learningenglishquiz.ui.home.model.QuizSession
-import okhttp3.Call
-import okhttp3.Callback
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.Response
-import java.io.IOException
 
 private const val TAG = "DownloadingViewModel"
 
@@ -20,52 +14,25 @@ class DownloadingViewModel : ViewModel() {
 
     private lateinit var fragment: DownloadingFragment
     private val quiz = MutableLiveData<QuizSession?>()
+    private val quizBody = MutableLiveData<String?>()
 
     fun init(fragment: DownloadingFragment): DownloadingViewModel {
         this.fragment = fragment
+        quizBody.observe(fragment.viewLifecycleOwner) {
+            if (it != null) buildQuiz(it)
+            else {
+                Toast.makeText(fragment.context, "Received empty Quiz", LENGTH_SHORT).show()
+                downloadQuiz()
+            }
+        }
         quiz.observe(fragment.viewLifecycleOwner) {
-            if (it != null) {
-                fragment.startQuizFragment(it)
-            } else {
-                Toast.makeText(fragment.context, "Received empty Quiz", Toast.LENGTH_SHORT).show()
+            if (it != null) fragment.startQuizFragment(it)
+            else {
+                Toast.makeText(fragment.context, "Received empty Quiz", LENGTH_SHORT).show()
                 downloadQuiz()
             }
         }
         return this
-    }
-
-    fun downloadQuiz() {
-        Log.d(TAG, "Downloading Quiz...")
-        val request = Request.Builder()
-            .url("https://mxkrc6qenp.eu-central-1.awsapprunner.com/quiz")
-            .build()
-        OkHttpClient().newCall(request).enqueue(object : Callback {
-
-            override fun onFailure(call: Call, e: IOException) {
-                Log.e(TAG, "Failed to request quiz. Original exception: ${e.message}")
-                fragment.activity?.runOnUiThread {
-                    quiz.value = null
-                }
-            }
-
-            override fun onResponse(call: Call, response: Response) {
-                Log.d(TAG, "Response from Quiz server received.")
-                val code = response.code
-                val body = response.body?.string() ?: ""
-                if (code == 200) {
-                    Log.d(TAG, "Quiz downloaded successfully. Quiz body: $body")
-                    buildQuiz(body)
-                } else {
-                    Log.e(
-                        TAG,
-                        "Failed to request. Response: code=$code body=${body}"
-                    )
-                    fragment.activity?.runOnUiThread {
-                        quiz.value = null
-                    }
-                }
-            }
-        })
     }
 
     private fun buildQuiz(body: String) {
@@ -93,6 +60,10 @@ class DownloadingViewModel : ViewModel() {
             }
             this.quiz.value = if (isValid) quiz else null
         }
+    }
+
+    fun downloadQuiz() {
+        QuizDownloader(fragment.activity, quizBody).downloadQuiz()
     }
 
 }
