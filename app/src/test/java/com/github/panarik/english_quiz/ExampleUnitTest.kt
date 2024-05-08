@@ -1,4 +1,4 @@
-package com.github.panarik.learningenglishquiz
+package com.github.panarik.english_quiz
 
 import org.junit.Test
 

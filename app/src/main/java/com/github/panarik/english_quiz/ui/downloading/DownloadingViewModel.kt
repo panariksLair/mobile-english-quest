@@ -1,10 +1,10 @@
-package com.github.panarik.learningenglishquiz.ui.downloading
+package com.github.panarik.english_quiz.ui.downloading
 
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.github.panarik.learningenglishquiz.ui.home.model.QuizSession
+import com.github.panarik.english_quiz.ui.home.model.QuizSession
 
 private const val TAG = "DownloadingViewModel"
 

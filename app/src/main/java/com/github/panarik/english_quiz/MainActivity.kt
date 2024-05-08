@@ -1,4 +1,4 @@
-package com.github.panarik.learningenglishquiz
+package com.github.panarik.english_quiz
 
 import android.os.Bundle
 import android.view.Menu
@@ -10,7 +10,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
-import com.github.panarik.learningenglishquiz.databinding.ActivityMainBinding
+import com.github.panarik.english_quiz.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 

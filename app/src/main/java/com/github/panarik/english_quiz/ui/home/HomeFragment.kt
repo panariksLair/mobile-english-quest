@@ -1,19 +1,18 @@
-package com.github.panarik.learningenglishquiz.ui.home
+package com.github.panarik.english_quiz.ui.home
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import com.github.panarik.learningenglishquiz.R
-import com.github.panarik.learningenglishquiz.databinding.FragmentHomeBinding
-import com.github.panarik.learningenglishquiz.ui.home.model.GameStates
-import com.github.panarik.learningenglishquiz.ui.home.model.HomeViewModel
-import com.github.panarik.learningenglishquiz.ui.home.model.QuizSession
+import com.github.panarik.english_quiz.R
+import com.github.panarik.english_quiz.databinding.FragmentHomeBinding
+import com.github.panarik.english_quiz.ui.home.model.GameStates
+import com.github.panarik.english_quiz.ui.home.model.HomeViewModel
+import com.github.panarik.english_quiz.ui.home.model.QuizSession
 
 class HomeFragment : Fragment() {
 
@@ -23,6 +22,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(inf: LayoutInflater, cont: ViewGroup?, state: Bundle?): View {
         binding = FragmentHomeBinding.inflate(inf, cont, false)
         model = ViewModelProvider(this)[HomeViewModel::class.java].init(this)
+        throw RuntimeException("Test")
         return binding!!.root
     }
 

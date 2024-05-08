@@ -1,15 +1,12 @@
-package com.github.panarik.learningenglishquiz.ui.home.model
+package com.github.panarik.english_quiz.ui.home.model
 
-import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.navigation.Navigation
-import com.github.panarik.learningenglishquiz.R
-import com.github.panarik.learningenglishquiz.ui.downloading.QuizDownloader
-import com.github.panarik.learningenglishquiz.ui.home.HomeFragment
+import com.github.panarik.english_quiz.ui.downloading.QuizDownloader
+import com.github.panarik.english_quiz.ui.home.HomeFragment
 
 private const val TAG = "HomeViewModel"
 

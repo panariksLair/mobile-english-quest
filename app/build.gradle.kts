@@ -2,18 +2,20 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("androidx.navigation.safeargs.kotlin")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
-    namespace = "com.github.panarik.learningenglishquiz"
+    namespace = "com.github.panarik.english_quiz"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.github.panarik.learningenglishquiz"
+        applicationId = "com.github.panarik.english_quiz"
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 101 // "1.3.1(001)" = 1_000_000 + 30_000 + 100 + 1
+        versionName = "0.0.1(001)"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -51,6 +53,10 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+
+    //Google Services
+    implementation("com.google.firebase:firebase-crashlytics:19.0.0")
+    implementation("com.google.firebase:firebase-analytics:22.0.0")
 
     //Internet and JSON parsing.
     implementation("com.squareup.okhttp3:okhttp:4.9.0")

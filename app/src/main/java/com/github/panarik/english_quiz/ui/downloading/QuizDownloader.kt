@@ -1,11 +1,10 @@
-package com.github.panarik.learningenglishquiz.ui.downloading
+package com.github.panarik.english_quiz.ui.downloading
 
 import android.util.Log
-import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.MutableLiveData
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.github.panarik.learningenglishquiz.ui.home.model.QuizSession
+import com.github.panarik.english_quiz.ui.home.model.QuizSession
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.OkHttpClient

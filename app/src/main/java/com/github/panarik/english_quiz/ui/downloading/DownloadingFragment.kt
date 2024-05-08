@@ -1,4 +1,4 @@
-package com.github.panarik.learningenglishquiz.ui.downloading
+package com.github.panarik.english_quiz.ui.downloading
 
 import android.os.Bundle
 import android.os.Handler
@@ -12,10 +12,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import com.github.panarik.learningenglishquiz.R
-import com.github.panarik.learningenglishquiz.databinding.FragmentDownloadingBinding
-import com.github.panarik.learningenglishquiz.ui.home.model.Quiz
-import com.github.panarik.learningenglishquiz.ui.home.model.QuizSession
+import com.github.panarik.english_quiz.R
+import com.github.panarik.english_quiz.databinding.FragmentDownloadingBinding
+import com.github.panarik.english_quiz.ui.home.model.QuizSession
 
 private const val UI_ANIMATION_DELAY = 300
 private const val TAG = "DownloadingFragment"

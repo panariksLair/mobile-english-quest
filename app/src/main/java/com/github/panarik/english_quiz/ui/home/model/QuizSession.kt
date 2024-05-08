@@ -1,4 +1,4 @@
-package com.github.panarik.learningenglishquiz.ui.home.model
+package com.github.panarik.english_quiz.ui.home.model
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import java.io.Serializable

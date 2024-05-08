@@ -1,4 +1,4 @@
-package com.github.panarik.learningenglishquiz
+package com.github.panarik.english_quiz
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
