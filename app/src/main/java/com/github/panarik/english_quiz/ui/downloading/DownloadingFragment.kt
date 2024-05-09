@@ -16,7 +16,7 @@ import com.github.panarik.english_quiz.R
 import com.github.panarik.english_quiz.databinding.FragmentDownloadingBinding
 import com.github.panarik.english_quiz.ui.home.model.QuizSession
 
-private const val UI_ANIMATION_DELAY = 300
+private const val UI_ANIMATION_DELAY = 500
 private const val TAG = "DownloadingFragment"
 
 class DownloadingFragment : Fragment() {
@@ -25,14 +25,6 @@ class DownloadingFragment : Fragment() {
     private lateinit var model: DownloadingViewModel
     private val hideHandler = Handler(Looper.myLooper()!!)
     private val fullScreenRunnable = Runnable {
-        val flags =
-            View.SYSTEM_UI_FLAG_LOW_PROFILE or
-                    View.SYSTEM_UI_FLAG_FULLSCREEN or
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
-                    View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
-                    View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
-                    View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-        activity?.window?.decorView?.systemUiVisibility = flags
         (activity as? AppCompatActivity)?.supportActionBar?.hide()
     }
 
@@ -44,6 +36,7 @@ class DownloadingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as? AppCompatActivity)?.supportActionBar?.title = ""
         fullScreenMode()
         model.downloadQuiz()
     }

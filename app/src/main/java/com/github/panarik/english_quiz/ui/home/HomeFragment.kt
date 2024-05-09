@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -22,12 +23,13 @@ class HomeFragment : Fragment() {
     override fun onCreateView(inf: LayoutInflater, cont: ViewGroup?, state: Bundle?): View {
         binding = FragmentHomeBinding.inflate(inf, cont, false)
         model = ViewModelProvider(this)[HomeViewModel::class.java].init(this)
-        throw RuntimeException("Test")
         return binding!!.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as? AppCompatActivity)?.supportActionBar?.title = ""
+
 
         // Wait users answers
         binding?.homeAnswer0Text?.setOnClickListener {

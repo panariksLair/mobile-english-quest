@@ -28,6 +28,12 @@ android {
                 "proguard-rules.pro"
             )
         }
+        debug {
+            isDebuggable = true
+            applicationIdSuffix = ".debug"
+            resValue("string", "app_name", "English Quiz (Debug)")
+
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
