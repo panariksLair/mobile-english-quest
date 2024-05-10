@@ -30,7 +30,6 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         (activity as? AppCompatActivity)?.supportActionBar?.title = ""
 
-
         // Wait users answers
         binding?.homeAnswer0Text?.setOnClickListener {
             if (model.gameState == GameStates.WAITING_USER_ACTION) {
