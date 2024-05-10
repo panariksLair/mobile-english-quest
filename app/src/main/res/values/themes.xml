@@ -3,13 +3,13 @@
     <style name="Theme.LearningEnglishQuiz" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
 
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/orange_500</item>
-        <item name="colorPrimaryVariant">@color/orange_700</item>
+        <item name="colorPrimary">#DF7D3C</item>
+        <item name="colorPrimaryVariant">#A44C12</item>
         <item name="colorOnPrimary">@color/white</item>
 
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200_60percent</item>
-        <item name="colorSecondaryVariant">@color/teal_700_60percent</item>
+        <item name="colorSecondary">@color/teal_200_70percent</item>
+        <item name="colorSecondaryVariant">@color/teal_700_70percent</item>
         <item name="colorOnSecondary">@color/black</item>
 
         <!-- Status bar color. -->

@@ -7,6 +7,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.github.panarik.english_quiz.ui.downloading.QuizDownloader
 import com.github.panarik.english_quiz.ui.home.HomeFragment
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 private const val TAG = "HomeViewModel"
 
@@ -53,12 +57,18 @@ class HomeViewModel : ViewModel() {
         currentQuiz.value?.let { fragment.finishQuiz(it) }
         if (currentQuiz.value?.answers?.get(buttonNumber)?.isRight == true) {
             gameState = GameStates.QUIZ_FINISHED_SUCCESS
-            Toast.makeText(fragment.context, "You Won!", LENGTH_SHORT).show()
-            fragment.startNextQuiz()
+            CoroutineScope(Dispatchers.Main).launch {
+                fragment.showWinIcon()
+                delay(2000)
+                fragment.startNextQuiz()
+            }
+
         } else {
             gameState = GameStates.QUIZ_FINISHED_FAILED
-            Toast.makeText(fragment.context, "You Lose!", LENGTH_SHORT).show()
-            fragment.startNextQuiz()
+            CoroutineScope(Dispatchers.Main).launch {
+                delay(2000)
+                fragment.startNextQuiz()
+            }
         }
     }
 

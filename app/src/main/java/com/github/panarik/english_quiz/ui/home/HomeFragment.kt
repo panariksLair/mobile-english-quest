@@ -86,4 +86,8 @@ class HomeFragment : Fragment() {
         binding?.homeAnswer2Text?.setBackgroundColor(if (session?.answers?.get(2)?.isRight == true) Color.GREEN else Color.RED)
         binding?.homeAnswer3Text?.setBackgroundColor(if (session?.answers?.get(3)?.isRight == true) Color.GREEN else Color.RED)
     }
+
+    fun showWinIcon() {
+        binding?.homeWinIcon?.visibility = View.VISIBLE
+    }
 }
