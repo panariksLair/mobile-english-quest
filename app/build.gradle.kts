@@ -14,8 +14,8 @@ android {
         applicationId = "com.github.panarik.english_quiz"
         minSdk = 24
         targetSdk = 34
-        versionCode = 101 // "1.3.1(001)" = 1_000_000 + 30_000 + 100 + 1
-        versionName = "0.0.1(001)"
+        versionCode = 201 // "1.3.1(001)" = 1_000_000 + 30_000 + 100 + 1
+        versionName = "0.0.2(1)"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -67,6 +67,9 @@ dependencies {
     //Internet and JSON parsing.
     implementation("com.squareup.okhttp3:okhttp:4.9.0")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.11.1")
+
+    // Animations
+    implementation("com.airbnb.android:lottie:3.7.0")
 
     // Tests
     testImplementation("junit:junit:4.13.2")

@@ -25,6 +25,7 @@ class QuizDownloader(val fragment: FragmentActivity?, val liveData: MutableLiveD
 
             override fun onFailure(call: Call, e: IOException) {
                 Log.e(TAG, "Failed to request quiz. Original exception: ${e.message}")
+                Thread.sleep(1000)
                 fragment?.runOnUiThread { liveData.value = null }
             }
 

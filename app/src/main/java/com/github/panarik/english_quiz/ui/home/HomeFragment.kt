@@ -81,13 +81,17 @@ class HomeFragment : Fragment() {
     }
 
     fun finishQuiz(session: QuizSession) {
-        binding?.homeAnswer0Text?.setBackgroundColor(if (session?.answers?.get(0)?.isRight == true) Color.GREEN else Color.RED)
-        binding?.homeAnswer1Text?.setBackgroundColor(if (session?.answers?.get(1)?.isRight == true) Color.GREEN else Color.RED)
-        binding?.homeAnswer2Text?.setBackgroundColor(if (session?.answers?.get(2)?.isRight == true) Color.GREEN else Color.RED)
-        binding?.homeAnswer3Text?.setBackgroundColor(if (session?.answers?.get(3)?.isRight == true) Color.GREEN else Color.RED)
+        binding?.homeAnswer0Text?.setBackgroundColor(if (session.answers?.get(0)?.isRight == true) Color.GREEN else Color.RED)
+        binding?.homeAnswer1Text?.setBackgroundColor(if (session.answers?.get(1)?.isRight == true) Color.GREEN else Color.RED)
+        binding?.homeAnswer2Text?.setBackgroundColor(if (session.answers?.get(2)?.isRight == true) Color.GREEN else Color.RED)
+        binding?.homeAnswer3Text?.setBackgroundColor(if (session.answers?.get(3)?.isRight == true) Color.GREEN else Color.RED)
     }
 
     fun showWinIcon() {
-        binding?.homeWinIcon?.visibility = View.VISIBLE
+        binding?.homeShadowLayer?.visibility = View.VISIBLE
+        binding?.homeWinMedalIcon?.visibility = View.VISIBLE
+        binding?.homeWinMedalIcon?.playAnimation()
+        binding?.homeWinLeavesIcon?.visibility = View.VISIBLE
+        binding?.homeWinLeavesIcon?.playAnimation()
     }
 }

@@ -59,14 +59,14 @@ class HomeViewModel : ViewModel() {
             gameState = GameStates.QUIZ_FINISHED_SUCCESS
             CoroutineScope(Dispatchers.Main).launch {
                 fragment.showWinIcon()
-                delay(2000)
+                delay(5000)
                 fragment.startNextQuiz()
             }
 
         } else {
             gameState = GameStates.QUIZ_FINISHED_FAILED
             CoroutineScope(Dispatchers.Main).launch {
-                delay(2000)
+                delay(5000)
                 fragment.startNextQuiz()
             }
         }
