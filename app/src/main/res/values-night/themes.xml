@@ -8,8 +8,8 @@
         <item name="colorOnPrimary">@color/black</item>
 
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200_70percent</item>
-        <item name="colorSecondaryVariant">@color/teal_200_70percent</item>
+        <item name="colorSecondary">@color/teal_200_80percent</item>
+        <item name="colorSecondaryVariant">@color/teal_200_80percent</item>
         <item name="colorOnSecondary">@color/black</item>
 
         <!-- Status bar color. -->

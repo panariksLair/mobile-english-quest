@@ -3,10 +3,10 @@
     <color name="orange_200">#FF924A</color>
     <color name="orange_500">#B3581B</color>
     <color name="orange_700">#7B3607</color>
-    <color name="teal_200_70percent">#B203D3DA</color>
-    <color name="teal_700_70percent">#B2018786</color>
+    <color name="teal_200_80percent">#CB3CD39E</color>
+    <color name="teal_700_70percent">#CB1C8B64</color>
     <color name="black">#FF000000</color>
-    <color name="black_30percent">#4D000000</color>
+    <color name="black_40percent">#66000000</color>
     <color name="transparent">#00000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="white_70percent">#B2FFFFFF</color>

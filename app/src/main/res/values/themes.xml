@@ -8,7 +8,7 @@
         <item name="colorOnPrimary">@color/white</item>
 
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200_70percent</item>
+        <item name="colorSecondary">@color/teal_200_80percent</item>
         <item name="colorSecondaryVariant">@color/teal_700_70percent</item>
         <item name="colorOnSecondary">@color/black</item>
 
