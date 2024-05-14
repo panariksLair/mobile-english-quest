@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import com.airbnb.lottie.Lottie
 import com.airbnb.lottie.LottieDrawable
 import com.github.panarik.english_quiz.R
 import com.github.panarik.english_quiz.databinding.FragmentHomeBinding
@@ -39,11 +38,8 @@ class HomeFragment : Fragment() {
         binding?.homeAnswer3Text?.setOnClickListener { checkQuiz(3) }
         binding?.homeLikeIcon?.setOnClickListener { likeQuiz() }
         binding?.homeDislikeIcon?.setOnClickListener { dislikeQuiz() }
-        binding?.homeNextIcon?.setOnClickListener {
-            startNextQuiz()
-        }
+        binding?.homeNextIcon?.setOnClickListener { startNextQuiz() }
         model.startQuiz()
-
     }
 
     override fun onDestroyView() {
@@ -78,16 +74,18 @@ class HomeFragment : Fragment() {
     }
 
     fun finishQuiz(session: QuizSession) {
-        binding?.homeAnswer0Text?.setBackgroundColor(if (session.answers?.get(0)?.isRight == true) Color.GREEN else Color.RED)
-        binding?.homeAnswer1Text?.setBackgroundColor(if (session.answers?.get(1)?.isRight == true) Color.GREEN else Color.RED)
-        binding?.homeAnswer2Text?.setBackgroundColor(if (session.answers?.get(2)?.isRight == true) Color.GREEN else Color.RED)
-        binding?.homeAnswer3Text?.setBackgroundColor(if (session.answers?.get(3)?.isRight == true) Color.GREEN else Color.RED)
+        val green = resources.getColor(R.color.win_green)
+        val red = resources.getColor(R.color.lose_red)
+        binding?.homeAnswer0Text?.setBackgroundColor(if (session.answers?.get(0)?.isRight == true) green else red)
+        binding?.homeAnswer1Text?.setBackgroundColor(if (session.answers?.get(1)?.isRight == true) green else red)
+        binding?.homeAnswer2Text?.setBackgroundColor(if (session.answers?.get(2)?.isRight == true) green else red)
+        binding?.homeAnswer3Text?.setBackgroundColor(if (session.answers?.get(3)?.isRight == true) green else red)
         binding?.homeLikeIcon?.visibility = View.VISIBLE
         binding?.homeDislikeIcon?.visibility = View.VISIBLE
-        binding?.homeNextButton?.visibility = View.VISIBLE
         binding?.homeNextIcon?.visibility = View.VISIBLE
-        binding?.homeNextIcon?.playAnimation()
-        binding?.homeNextIcon?.repeatCount = LottieDrawable.INFINITE
+        binding?.homeNextAnimation?.visibility = View.VISIBLE
+        binding?.homeNextAnimation?.playAnimation()
+        binding?.homeNextAnimation?.repeatCount = LottieDrawable.INFINITE
     }
 
     fun showWinIcon() {
