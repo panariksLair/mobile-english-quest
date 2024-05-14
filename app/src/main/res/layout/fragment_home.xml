@@ -46,61 +46,61 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/home_summary_text" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/home_answer_0_text"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+        android:autoSizeMaxTextSize="30sp"
+        android:autoSizeMinTextSize="15sp"
+        android:autoSizeTextType="uniform"
         android:textAllCaps="false"
         android:translationZ="2dp"
-        android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="15sp"
-        android:autoSizeMaxTextSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/home_answer_1_text" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/home_answer_1_text"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+        android:autoSizeMaxTextSize="30sp"
+        android:autoSizeMinTextSize="15sp"
+        android:autoSizeTextType="uniform"
         android:textAllCaps="false"
         android:translationZ="2dp"
-        android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="15sp"
-        android:autoSizeMaxTextSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/home_answer_2_text" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/home_answer_2_text"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+        android:autoSizeMaxTextSize="30sp"
+        android:autoSizeMinTextSize="15sp"
+        android:autoSizeTextType="uniform"
         android:textAllCaps="false"
         android:translationZ="2dp"
-        android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="15sp"
-        android:autoSizeMaxTextSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/home_answer_3_text" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/home_answer_3_text"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="70dp"
+        android:autoSizeMaxTextSize="30sp"
+        android:autoSizeMinTextSize="15sp"
+        android:autoSizeTextType="uniform"
         android:textAllCaps="false"
         android:translationZ="2dp"
-        android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="15sp"
-        android:autoSizeMaxTextSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/home_win_medal_icon"
+        android:id="@+id/home_win_medal_animation"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:translationZ="5dp"
@@ -112,7 +112,7 @@
         app:lottie_rawRes="@raw/medal3" />
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/home_win_leaves_icon"
+        android:id="@+id/home_win_leaves_animation"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:translationZ="5dp"
@@ -122,5 +122,60 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:lottie_rawRes="@raw/leaves2" />
+
+    <ImageView
+        android:id="@+id/home_like_icon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/like_white"
+        android:translationZ="5dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/home_like_animation"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="16dp"
+        android:translationZ="6dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:lottie_rawRes="@raw/like" />
+
+    <ImageView
+        android:id="@+id/home_dislike_icon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/dislike_white"
+        android:translationZ="5dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/home_like_animation" />
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/home_dislike_animation"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="20dp"
+        android:translationZ="6dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/home_like_animation"
+        app:lottie_rawRes="@raw/dislike" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/home_next_icon"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:translationZ="6dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/home_answer_3_text"
+        app:lottie_rawRes="@raw/next" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

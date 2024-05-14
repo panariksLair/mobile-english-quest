@@ -11,17 +11,24 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
 import java.io.IOException
+import java.util.concurrent.TimeUnit
 
 private const val TAG = "QuizDownloader"
 
 class QuizDownloader(val fragment: FragmentActivity?, val liveData: MutableLiveData<QuizSession?>) {
+
+    private val client = OkHttpClient.Builder()
+        .readTimeout(30, TimeUnit.SECONDS)
+        .writeTimeout(30, TimeUnit.SECONDS)
+        .connectTimeout(30, TimeUnit.SECONDS)
+        .build()
 
     fun downloadQuiz() {
         Log.d(TAG, "Downloading new Quiz...")
         val request = Request.Builder()
             .url("https://mxkrc6qenp.eu-central-1.awsapprunner.com/quiz")
             .build()
-        OkHttpClient().newCall(request).enqueue(object : Callback {
+        client.newCall(request).enqueue(object : Callback {
 
             override fun onFailure(call: Call, e: IOException) {
                 Log.e(TAG, "Failed to request quiz. Original exception: ${e.message}")

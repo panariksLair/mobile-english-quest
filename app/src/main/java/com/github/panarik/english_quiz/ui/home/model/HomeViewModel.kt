@@ -18,7 +18,7 @@ class HomeViewModel : ViewModel() {
 
     private lateinit var fragment: HomeFragment
 
-    var gameState: GameStates = GameStates.WAITING_USER_ACTION
+    var gameState = MutableLiveData<GameStates>()
     private val currentQuiz = MutableLiveData<QuizSession>()
     val newQuiz = MutableLiveData<QuizSession?>()
 
@@ -44,6 +44,7 @@ class HomeViewModel : ViewModel() {
             answers.toList()
             currentQuiz.value!!.answers = answers
             fragment.createScreen(currentQuiz.value!!)
+            gameState.value = GameStates.WAITING_USER_ACTION
 
             // Download next quiz also.
             QuizDownloader(fragment.activity, newQuiz).downloadQuiz()
@@ -56,19 +57,8 @@ class HomeViewModel : ViewModel() {
     fun checkQuiz(buttonNumber: Int) {
         currentQuiz.value?.let { fragment.finishQuiz(it) }
         if (currentQuiz.value?.answers?.get(buttonNumber)?.isRight == true) {
-            gameState = GameStates.QUIZ_FINISHED_SUCCESS
-            CoroutineScope(Dispatchers.Main).launch {
-                fragment.showWinIcon()
-                delay(5000)
-                fragment.startNextQuiz()
-            }
-
-        } else {
-            gameState = GameStates.QUIZ_FINISHED_FAILED
-            CoroutineScope(Dispatchers.Main).launch {
-                delay(5000)
-                fragment.startNextQuiz()
-            }
+            gameState.value = GameStates.QUIZ_FINISHED_SUCCESS
+            fragment.showWinIcon()
         }
     }
 
