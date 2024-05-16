@@ -88,6 +88,7 @@ class HomeFragment : Fragment() {
     }
 
     fun finishQuiz(session: QuizSession) {
+        model.gameState.value = GameStates.QUIZ_FINISHED
         val green = resources.getColor(R.color.win_green)
         val red = resources.getColor(R.color.lose_red)
         binding?.homeAnswer0Text?.setBackgroundColor(if (session.answers?.get(0)?.isRight == true) green else red)
@@ -113,12 +114,16 @@ class HomeFragment : Fragment() {
     private fun likeQuiz() {
         binding?.homeLikeIcon?.visibility = View.INVISIBLE
         binding?.homeLikeAnimation?.visibility = View.VISIBLE
+        binding?.homeDislikeIcon?.visibility = View.VISIBLE
+        binding?.homeDislikeAnimation?.visibility = View.INVISIBLE
         binding?.homeLikeAnimation?.playAnimation()
     }
 
     private fun dislikeQuiz() {
         binding?.homeDislikeIcon?.visibility = View.INVISIBLE
         binding?.homeDislikeAnimation?.visibility = View.VISIBLE
+        binding?.homeLikeIcon?.visibility = View.VISIBLE
+        binding?.homeLikeAnimation?.visibility = View.INVISIBLE
         binding?.homeDislikeAnimation?.playAnimation()
     }
 

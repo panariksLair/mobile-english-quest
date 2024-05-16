@@ -59,6 +59,8 @@ class HomeViewModel : ViewModel() {
         if (currentQuiz.value?.answers?.get(buttonNumber)?.isRight == true) {
             gameState.value = GameStates.QUIZ_FINISHED_SUCCESS
             fragment.showWinIcon()
+        } else {
+            gameState.value = GameStates.QUIZ_FINISHED_FAILURE
         }
     }
 
