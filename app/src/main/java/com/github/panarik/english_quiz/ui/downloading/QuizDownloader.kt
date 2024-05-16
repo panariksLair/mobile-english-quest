@@ -54,6 +54,7 @@ class QuizDownloader(val fragment: FragmentActivity?, val liveData: MutableLiveD
                     }
                 } else {
                     Log.e(TAG, "Failed to request. Response: code=$code body=${body}")
+                    Thread.sleep(1000)
                     fragment?.runOnUiThread { liveData.value = null }
                 }
             }

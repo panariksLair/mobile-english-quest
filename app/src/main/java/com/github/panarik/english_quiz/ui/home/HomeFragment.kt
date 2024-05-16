@@ -1,7 +1,7 @@
 package com.github.panarik.english_quiz.ui.home
 
-import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,16 +10,27 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.airbnb.lottie.LottieDrawable
+import com.github.panarik.english_quiz.MainActivity
 import com.github.panarik.english_quiz.R
 import com.github.panarik.english_quiz.databinding.FragmentHomeBinding
 import com.github.panarik.english_quiz.ui.home.model.GameStates
 import com.github.panarik.english_quiz.ui.home.model.HomeViewModel
 import com.github.panarik.english_quiz.ui.home.model.QuizSession
+import com.google.android.gms.ads.AdError
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.FullScreenContentCallback
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+
+private const val TAG = "[HomeFragment]"
 
 class HomeFragment : Fragment() {
 
     private var binding: FragmentHomeBinding? = null
     private lateinit var model: HomeViewModel
+    var ad: InterstitialAd? = null
 
     override fun onCreateView(inf: LayoutInflater, cont: ViewGroup?, state: Bundle?): View {
         binding = FragmentHomeBinding.inflate(inf, cont, false)
@@ -30,15 +41,8 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as? AppCompatActivity)?.supportActionBar?.title = ""
-
-        // Wait users answers
-        binding?.homeAnswer0Text?.setOnClickListener { checkQuiz(0) }
-        binding?.homeAnswer1Text?.setOnClickListener { checkQuiz(1) }
-        binding?.homeAnswer2Text?.setOnClickListener { checkQuiz(2) }
-        binding?.homeAnswer3Text?.setOnClickListener { checkQuiz(3) }
-        binding?.homeLikeIcon?.setOnClickListener { likeQuiz() }
-        binding?.homeDislikeIcon?.setOnClickListener { dislikeQuiz() }
-        binding?.homeNextIcon?.setOnClickListener { startNextQuiz() }
+        setupAd()
+        setUpListeners()
         model.startQuiz()
     }
 
@@ -49,6 +53,16 @@ class HomeFragment : Fragment() {
 
     fun startLoadingFragment() {
         binding?.root?.let { Navigation.findNavController(it).navigate(R.id.toDownloadingFragment) }
+    }
+
+    private fun setUpListeners() {
+        binding?.homeAnswer0Text?.setOnClickListener { checkQuiz(0) }
+        binding?.homeAnswer1Text?.setOnClickListener { checkQuiz(1) }
+        binding?.homeAnswer2Text?.setOnClickListener { checkQuiz(2) }
+        binding?.homeAnswer3Text?.setOnClickListener { checkQuiz(3) }
+        binding?.homeLikeIcon?.setOnClickListener { likeQuiz() }
+        binding?.homeDislikeIcon?.setOnClickListener { dislikeQuiz() }
+        binding?.homeNextIcon?.setOnClickListener { showAd() }
     }
 
     private fun startNextQuiz() {
@@ -106,5 +120,78 @@ class HomeFragment : Fragment() {
         binding?.homeDislikeIcon?.visibility = View.INVISIBLE
         binding?.homeDislikeAnimation?.visibility = View.VISIBLE
         binding?.homeDislikeAnimation?.playAnimation()
+    }
+
+    private fun setupAd() {
+        context?.let { MobileAds.initialize(it) {} }
+        var adRequest = AdRequest.Builder().build()
+        context?.let {
+            InterstitialAd.load(
+                it,
+                "ca-app-pub-3940256099942544/1033173712",
+                adRequest,
+                object : InterstitialAdLoadCallback() {
+                    override fun onAdFailedToLoad(adError: LoadAdError) {
+                        ad = null
+                    }
+
+                    override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                        ad = interstitialAd
+                    }
+                })
+        }
+    }
+
+    private fun showAd() {
+        if (ad != null) {
+            Log.d(TAG, "Add is loaded. Start showing it...")
+            activity?.let { ad?.show(it) }
+            ad?.fullScreenContentCallback = object : FullScreenContentCallback() {
+
+                /**
+                 * Called when a click is recorded for an ad.
+                 */
+                override fun onAdClicked() {
+                    Log.d(TAG, "Ad was clicked.")
+                }
+
+                /**
+                 * Called when ad is dismissed.
+                 */
+                override fun onAdDismissedFullScreenContent() {
+                    Log.d(TAG, "Ad dismissed fullscreen content.")
+                    ad = null
+                    startNextQuiz()
+                }
+
+                /**
+                 * Called when ad fails to show.
+                 */
+                override fun onAdFailedToShowFullScreenContent(p0: AdError) {
+                    Log.e(TAG, "Ad failed to show fullscreen content.")
+                    ad = null
+                    startNextQuiz()
+                }
+
+                /**
+                 * Called when an impression is recorded for an ad.
+                 */
+                override fun onAdImpression() {
+                    Log.d(TAG, "Ad recorded an impression.")
+                    startNextQuiz()
+                }
+
+                /**
+                 * Called when ad is shown.
+                 */
+                override fun onAdShowedFullScreenContent() {
+                    Log.d(TAG, "Ad showed fullscreen content.")
+                    startNextQuiz()
+                }
+            }
+        } else {
+            Log.d(TAG, "Add is not ready. Start new Quiz.")
+            startNextQuiz()
+        }
     }
 }

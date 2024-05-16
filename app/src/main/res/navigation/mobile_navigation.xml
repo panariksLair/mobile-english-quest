@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/toDownloadingFragment"
-            app:destination="@id/downloadingFragment"/>
+            app:destination="@id/downloadingFragment" />
         <action
             android:id="@+id/toHomeFragment"
             app:destination="@id/homeFragment" />
@@ -36,6 +36,6 @@
         tools:layout="@layout/fragment_downloading">
         <action
             android:id="@+id/toHomeFragment"
-            app:destination="@id/homeFragment"/>
+            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

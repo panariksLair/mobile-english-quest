@@ -63,6 +63,7 @@ dependencies {
     //Google Services
     implementation("com.google.firebase:firebase-crashlytics:19.0.0")
     implementation("com.google.firebase:firebase-analytics:22.0.0")
+    implementation("com.google.android.gms:play-services-ads:23.1.0")
 
     //Internet and JSON parsing.
     implementation("com.squareup.okhttp3:okhttp:4.9.0")
