@@ -11,6 +11,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="white_70percent">#B2FFFFFF</color>
     <color name="win_green">#8BC34A</color>
-    <color name="lose_red">#BE4646</color>
+    <color name="lose_red">#BE4545</color>
 
 </resources>

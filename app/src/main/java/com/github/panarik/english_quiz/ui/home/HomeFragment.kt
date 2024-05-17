@@ -1,5 +1,6 @@
 package com.github.panarik.english_quiz.ui.home
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.airbnb.lottie.LottieDrawable
-import com.github.panarik.english_quiz.MainActivity
 import com.github.panarik.english_quiz.R
 import com.github.panarik.english_quiz.databinding.FragmentHomeBinding
 import com.github.panarik.english_quiz.ui.home.model.GameStates
@@ -56,13 +56,13 @@ class HomeFragment : Fragment() {
     }
 
     private fun setUpListeners() {
-        binding?.homeAnswer0Text?.setOnClickListener { checkQuiz(0) }
-        binding?.homeAnswer1Text?.setOnClickListener { checkQuiz(1) }
-        binding?.homeAnswer2Text?.setOnClickListener { checkQuiz(2) }
-        binding?.homeAnswer3Text?.setOnClickListener { checkQuiz(3) }
+        binding?.homeAnswer0Button?.setOnClickListener { checkQuiz(0) }
+        binding?.homeAnswer1Button?.setOnClickListener { checkQuiz(1) }
+        binding?.homeAnswer2Button?.setOnClickListener { checkQuiz(2) }
+        binding?.homeAnswer3Button?.setOnClickListener { checkQuiz(3) }
         binding?.homeLikeIcon?.setOnClickListener { likeQuiz() }
         binding?.homeDislikeIcon?.setOnClickListener { dislikeQuiz() }
-        binding?.homeNextIcon?.setOnClickListener { showAd() }
+        binding?.homeNextButton?.setOnClickListener { showAd() }
     }
 
     private fun startNextQuiz() {
@@ -75,10 +75,15 @@ class HomeFragment : Fragment() {
     fun createScreen(session: QuizSession) {
         binding?.homeSummaryText?.text = session.quiz.summary
         binding?.homeQuestionText?.text = session.quiz.question
-        binding?.homeAnswer0Text?.text = session.answers?.get(0)?.answer
-        binding?.homeAnswer1Text?.text = session.answers?.get(1)?.answer
-        binding?.homeAnswer2Text?.text = session.answers?.get(2)?.answer
-        binding?.homeAnswer3Text?.text = session.answers?.get(3)?.answer
+        binding?.homeAnswer0Button?.text = session.answers?.get(0)?.answer
+        binding?.homeAnswer0ResultText?.text = session.answers?.get(0)?.answer
+        binding?.homeAnswer1Button?.text = session.answers?.get(1)?.answer
+        binding?.homeAnswer1ResultText?.text = session.answers?.get(1)?.answer
+        binding?.homeAnswer2Button?.text = session.answers?.get(2)?.answer
+        binding?.homeAnswer2ResultText?.text = session.answers?.get(2)?.answer
+        binding?.homeAnswer3Button?.text = session.answers?.get(3)?.answer
+        binding?.homeAnswer3ResultText?.text = session.answers?.get(3)?.answer
+
     }
 
     private fun checkQuiz(button: Int) {
@@ -91,16 +96,36 @@ class HomeFragment : Fragment() {
         model.gameState.value = GameStates.QUIZ_FINISHED
         val green = resources.getColor(R.color.win_green)
         val red = resources.getColor(R.color.lose_red)
-        binding?.homeAnswer0Text?.setBackgroundColor(if (session.answers?.get(0)?.isRight == true) green else red)
-        binding?.homeAnswer1Text?.setBackgroundColor(if (session.answers?.get(1)?.isRight == true) green else red)
-        binding?.homeAnswer2Text?.setBackgroundColor(if (session.answers?.get(2)?.isRight == true) green else red)
-        binding?.homeAnswer3Text?.setBackgroundColor(if (session.answers?.get(3)?.isRight == true) green else red)
+        binding?.homeAnswer0Button?.visibility = View.INVISIBLE
+        binding?.homeAnswer0Button?.isEnabled = false
+        binding?.homeAnswer1Button?.visibility = View.INVISIBLE
+        binding?.homeAnswer1Button?.isEnabled = false
+        binding?.homeAnswer2Button?.visibility = View.INVISIBLE
+        binding?.homeAnswer2Button?.isEnabled = false
+        binding?.homeAnswer3Button?.visibility = View.INVISIBLE
+        binding?.homeAnswer3Button?.isEnabled = false
+        binding?.homeAnswer0ResultText?.visibility = View.VISIBLE
+        binding?.homeAnswer0ResultText?.setBackgroundColor(if (session.answers?.get(0)?.isRight == true) green else red)
+        binding?.homeAnswer1ResultText?.setBackgroundColor(if (session.answers?.get(1)?.isRight == true) green else red)
+        binding?.homeAnswer1ResultText?.visibility = View.VISIBLE
+        binding?.homeAnswer2ResultText?.setBackgroundColor(if (session.answers?.get(2)?.isRight == true) green else red)
+        binding?.homeAnswer2ResultText?.visibility = View.VISIBLE
+        binding?.homeAnswer3ResultText?.setBackgroundColor(if (session.answers?.get(3)?.isRight == true) green else red)
+        binding?.homeAnswer3ResultText?.visibility = View.VISIBLE
         binding?.homeLikeIcon?.visibility = View.VISIBLE
         binding?.homeDislikeIcon?.visibility = View.VISIBLE
-        binding?.homeNextIcon?.visibility = View.VISIBLE
+        showNextButton()
+    }
+
+    private fun showNextButton() {
+        binding?.homeNextButton?.visibility = View.VISIBLE
         binding?.homeNextAnimation?.visibility = View.VISIBLE
         binding?.homeNextAnimation?.playAnimation()
         binding?.homeNextAnimation?.repeatCount = LottieDrawable.INFINITE
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            binding?.homeNextButton?.focusable = View.FOCUSABLE
+        }
     }
 
     fun showWinIcon() {
