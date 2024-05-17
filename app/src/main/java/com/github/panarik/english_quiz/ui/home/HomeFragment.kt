@@ -13,6 +13,7 @@ import androidx.navigation.Navigation
 import com.airbnb.lottie.LottieDrawable
 import com.github.panarik.english_quiz.R
 import com.github.panarik.english_quiz.databinding.FragmentHomeBinding
+import com.github.panarik.english_quiz.services.AppFlags
 import com.github.panarik.english_quiz.ui.home.model.GameStates
 import com.github.panarik.english_quiz.ui.home.model.HomeViewModel
 import com.github.panarik.english_quiz.ui.home.model.QuizSession
@@ -66,6 +67,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun startNextQuiz() {
+        AppFlags.newSession()
         val bundle = Bundle().apply { putSerializable("QuizSession", model.newQuiz.value) }
         binding?.root?.let {
             Navigation.findNavController(it).navigate(R.id.toHomeFragment, bundle)
@@ -173,8 +175,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun showAd() {
-        if (ad != null) {
+        if (ad != null && AppFlags.isAdTime(model.gameState.value)) {
             Log.d(TAG, "Add is loaded. Start showing it...")
+            AppFlags.resetSession()
             activity?.let { ad?.show(it) }
             ad?.fullScreenContentCallback = object : FullScreenContentCallback() {
 
