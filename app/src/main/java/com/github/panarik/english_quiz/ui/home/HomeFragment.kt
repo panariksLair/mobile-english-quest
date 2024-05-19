@@ -144,6 +144,7 @@ class HomeFragment : Fragment() {
         binding?.homeDislikeIcon?.visibility = View.VISIBLE
         binding?.homeDislikeAnimation?.visibility = View.INVISIBLE
         binding?.homeLikeAnimation?.playAnimation()
+        model.rateQuiz(1)
     }
 
     private fun dislikeQuiz() {
@@ -152,6 +153,7 @@ class HomeFragment : Fragment() {
         binding?.homeLikeIcon?.visibility = View.VISIBLE
         binding?.homeLikeAnimation?.visibility = View.INVISIBLE
         binding?.homeDislikeAnimation?.playAnimation()
+        model.rateQuiz(-1)
     }
 
     private fun setupAd() {

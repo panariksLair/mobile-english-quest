@@ -52,7 +52,7 @@
         android:layout_height="80dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:autoSizeMaxTextSize="30sp"
+        android:autoSizeMaxTextSize="25sp"
         android:autoSizeMinTextSize="15sp"
         android:autoSizeTextType="uniform"
         android:textAllCaps="false"

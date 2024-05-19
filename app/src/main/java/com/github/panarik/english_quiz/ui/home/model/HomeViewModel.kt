@@ -5,14 +5,19 @@ import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.github.panarik.english_quiz.services.model.QuizRate
 import com.github.panarik.english_quiz.ui.downloading.QuizDownloader
 import com.github.panarik.english_quiz.ui.home.HomeFragment
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
+import okhttp3.Response
+import java.io.IOException
 
-private const val TAG = "HomeViewModel"
+private const val TAG = "[HomeViewModel]"
 
 class HomeViewModel : ViewModel() {
 
@@ -61,6 +66,33 @@ class HomeViewModel : ViewModel() {
             fragment.showWinIcon()
         } else {
             gameState.value = GameStates.QUIZ_FINISHED_FAILURE
+        }
+    }
+
+    fun rateQuiz(rate: Int) {
+        val quizRate = QuizRate(currentQuiz.value?.sessionId ?: "", rate)
+        try {
+            val body = jacksonObjectMapper().writeValueAsBytes(quizRate).toRequestBody()
+            val request =
+                Request.Builder().url("https://mxkrc6qenp.eu-central-1.awsapprunner.com/rate")
+                    .post(body).build()
+            OkHttpClient().newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    Log.e(TAG, "Can't send QuizRate. Message=${e.message} QuizRate=${quizRate}")
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    Log.d(
+                        TAG,
+                        "QuizRate is sent successfully. Response code=${response.code} body=${response.body?.string()}"
+                    )
+                    fragment.activity?.runOnUiThread {
+                        Toast.makeText(fragment.context, "Thank You!", LENGTH_SHORT).show()
+                    }
+                }
+            })
+        } catch (e: Exception) {
+            Log.e(TAG, "Can't QuizRate to server. Message=${e.message} QuizRate=${quizRate}")
         }
     }
 
