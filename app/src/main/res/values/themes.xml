@@ -21,7 +21,9 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.LearningEnglishQuiz.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="Theme.LearningEnglishQuiz.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark" />
+    <style name="Theme.LearningEnglishQuiz.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.LearningEnglishQuiz.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+    </style>
 </resources>

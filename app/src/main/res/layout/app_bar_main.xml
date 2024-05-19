@@ -16,8 +16,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/transparent"
-            app:popupTheme="@style/Theme.LearningEnglishQuiz.PopupOverlay" />
+            app:popupTheme="@style/Theme.LearningEnglishQuiz.AppBarOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

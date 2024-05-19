@@ -19,3 +19,7 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Exclude com.google.android.gms to avoid unknown Ads crashes.
+-keep class com.google.android.gms.** { *; }
+-dontwarn com.google.android.gms.**

@@ -160,7 +160,7 @@ class HomeFragment : Fragment() {
         context?.let {
             InterstitialAd.load(
                 it,
-                "ca-app-pub-3940256099942544/1033173712",
+                "ca-app-pub-3940256099942544/1033173712", // test Ad
                 adRequest,
                 object : InterstitialAdLoadCallback() {
                     override fun onAdFailedToLoad(adError: LoadAdError) {
