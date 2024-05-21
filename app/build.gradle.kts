@@ -4,6 +4,11 @@ plugins {
     id("androidx.navigation.safeargs.kotlin")
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
+
+    //Database
+    id("androidx.room") version "2.6.1" apply false
+    id("com.google.devtools.ksp") version "1.9.24-1.0.20"
+
 }
 
 android {
@@ -14,8 +19,8 @@ android {
         applicationId = "com.github.panarik.english_quiz"
         minSdk = 24
         targetSdk = 34
-        versionCode = 10005 // "1.3.1(01)" = 1_000_000 + 30_000 + 100 + 1
-        versionName = "0.1.0(5)"
+        versionCode = 20101 // "1.3.1(01)" = 1_000_000 + 30_000 + 100 + 1
+        versionName = "0.2.1(1)"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -71,6 +76,13 @@ dependencies {
 
     // Animations
     implementation("com.airbnb.android:lottie:3.7.0")
+
+    //Database
+    val room_version = "2.6.1"
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
+    ksp("androidx.room:room-compiler:$room_version")
 
     // Tests
     testImplementation("junit:junit:4.13.2")

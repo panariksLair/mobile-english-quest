@@ -10,10 +10,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.room.Room
 import com.airbnb.lottie.LottieDrawable
 import com.github.panarik.english_quiz.R
 import com.github.panarik.english_quiz.databinding.FragmentHomeBinding
 import com.github.panarik.english_quiz.services.AppFlags
+import com.github.panarik.english_quiz.services.database.QuizesDatabase
 import com.github.panarik.english_quiz.ui.home.model.GameStates
 import com.github.panarik.english_quiz.ui.home.model.HomeViewModel
 import com.github.panarik.english_quiz.ui.home.model.QuizSession

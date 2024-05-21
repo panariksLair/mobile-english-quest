@@ -5,9 +5,12 @@ import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.lifecycleScope
+import androidx.room.Room
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.github.panarik.english_quiz.services.database.QuizesData
+import com.github.panarik.english_quiz.services.database.QuizesDatabase
 import com.github.panarik.english_quiz.services.model.QuizRate
-import com.github.panarik.english_quiz.ui.downloading.QuizDownloader
 import com.github.panarik.english_quiz.ui.home.HomeFragment
 import okhttp3.Call
 import okhttp3.Callback
@@ -26,6 +29,7 @@ class HomeViewModel : ViewModel() {
     var gameState = MutableLiveData<GameStates>()
     private val currentQuiz = MutableLiveData<QuizSession>()
     val newQuiz = MutableLiveData<QuizSession?>()
+    lateinit var db: QuizesDatabase
 
     fun init(fragment: HomeFragment): HomeViewModel {
         this.fragment = fragment
@@ -42,17 +46,21 @@ class HomeViewModel : ViewModel() {
             Log.d(TAG, "Quiz is ready. Starting Quiz...")
             val answers = mutableListOf<QuizAnswer>()
             answers.add(QuizAnswer(currentQuiz.value!!.quiz.right_answer, true))
-            answers.add(QuizAnswer(currentQuiz.value!!.quiz.wrong_answers[0], false))
-            answers.add(QuizAnswer(currentQuiz.value!!.quiz.wrong_answers[1], false))
-            answers.add(QuizAnswer(currentQuiz.value!!.quiz.wrong_answers[2], false))
+            answers.add(QuizAnswer(currentQuiz.value!!.quiz.wrong_answer_1, false))
+            answers.add(QuizAnswer(currentQuiz.value!!.quiz.wrong_answer_2, false))
+            answers.add(QuizAnswer(currentQuiz.value!!.quiz.wrong_answer_3, false))
             answers.shuffle()
             answers.toList()
             currentQuiz.value!!.answers = answers
             fragment.createScreen(currentQuiz.value!!)
             gameState.value = GameStates.WAITING_USER_ACTION
 
-            // Download next quiz also.
-            QuizDownloader(fragment.activity, newQuiz).downloadQuiz()
+            // Start database.
+            db = Room.databaseBuilder(
+                fragment.requireActivity().applicationContext,
+                QuizesDatabase::class.java,
+                "my-quiz"
+            ).build()
         } else {
             Log.d(TAG, "Quiz is not ready. Downloading new Quiz...")
             fragment.startLoadingFragment()
