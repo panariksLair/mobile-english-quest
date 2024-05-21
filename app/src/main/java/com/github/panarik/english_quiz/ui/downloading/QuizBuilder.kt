@@ -3,8 +3,12 @@ package com.github.panarik.english_quiz.ui.downloading
 import android.util.Log
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.lifecycleScope
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.github.panarik.english_quiz.MainActivity
 import com.github.panarik.english_quiz.ui.home.model.QuizSession
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.OkHttpClient
@@ -13,9 +17,9 @@ import okhttp3.Response
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 
-private const val TAG = "QuizDownloader"
+private const val TAG = "[QuizBuilder]"
 
-class QuizDownloader(val fragment: FragmentActivity?, val liveData: MutableLiveData<QuizSession?>) {
+class QuizBuilder(val fragment: FragmentActivity?, val liveData: MutableLiveData<QuizSession?>) {
 
     private val client = OkHttpClient.Builder()
         .readTimeout(30, TimeUnit.SECONDS)
@@ -23,7 +27,32 @@ class QuizDownloader(val fragment: FragmentActivity?, val liveData: MutableLiveD
         .connectTimeout(30, TimeUnit.SECONDS)
         .build()
 
-    fun downloadQuiz() {
+    fun buildQuiz() {
+        buildFromDatabase()
+    }
+
+    private fun buildFromDatabase() {
+        val activity = fragment as MainActivity
+        activity.lifecycleScope.launch {
+            Log.d(TAG, "Getting quiz from database.")
+            var quizes: List<QuizSession> = emptyList()
+            while (quizes.isEmpty()) {
+                Log.d(TAG, "Trying to get quiz from database...")
+                quizes = activity.db.dao.getQuizes().map { it.toQuizSession() }
+                if (quizes.isNotEmpty()) {
+                    Log.d(TAG, "Quiz received successfully.")
+                    liveData.value = quizes[0]
+                } else {
+                    Log.d(TAG, "Can't receive Quiz. Waiting one second to database update.")
+                    delay(1000)
+                    liveData.value = null
+                }
+            }
+
+        }
+    }
+
+    private fun downloadQuiz() {
         Log.d(TAG, "Downloading new Quiz...")
         val request = Request.Builder()
             .url("https://mxkrc6qenp.eu-central-1.awsapprunner.com/quiz")
@@ -42,7 +71,7 @@ class QuizDownloader(val fragment: FragmentActivity?, val liveData: MutableLiveD
                 val body = response.body?.string() ?: ""
                 if (code == 200) {
                     Log.d(TAG, "Quiz downloaded successfully. Quiz body: $body")
-                    val quiz = buildQuiz(body)
+                    val quiz = parseQuiz(body)
                     fragment?.runOnUiThread {
                         if (quiz != null) {
                             Log.d(TAG, "Quiz is valid.")
@@ -61,7 +90,7 @@ class QuizDownloader(val fragment: FragmentActivity?, val liveData: MutableLiveD
         })
     }
 
-    private fun buildQuiz(body: String): QuizSession? {
+    private fun parseQuiz(body: String): QuizSession? {
         Log.d(TAG, "Parsing Quiz body...")
         return try {
             val quizSession = jacksonObjectMapper().readValue(body, QuizSession::class.java)

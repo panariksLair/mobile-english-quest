@@ -38,7 +38,7 @@ class DownloadingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         (activity as? AppCompatActivity)?.supportActionBar?.title = ""
         fullScreenMode()
-        model.downloadQuiz()
+        model.buildQuiz()
     }
 
     override fun onResume() {

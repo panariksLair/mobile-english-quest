@@ -10,12 +10,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import androidx.room.Room
 import com.airbnb.lottie.LottieDrawable
 import com.github.panarik.english_quiz.R
 import com.github.panarik.english_quiz.databinding.FragmentHomeBinding
 import com.github.panarik.english_quiz.services.AppFlags
-import com.github.panarik.english_quiz.services.database.QuizesDatabase
 import com.github.panarik.english_quiz.ui.home.model.GameStates
 import com.github.panarik.english_quiz.ui.home.model.HomeViewModel
 import com.github.panarik.english_quiz.ui.home.model.QuizSession
@@ -54,7 +52,15 @@ class HomeFragment : Fragment() {
         binding = null
     }
 
-    fun startLoadingFragment() {
+    fun startFragment(quizSession: QuizSession) {
+        Log.d(TAG, "Start Home fragment with new Quiz.")
+        val bundle = Bundle().apply { putSerializable("QuizSession", quizSession) }
+        binding?.root?.let {
+            Navigation.findNavController(it).navigate(R.id.toHomeFragment, bundle)
+        }
+    }
+
+    fun startBuildingQuizFragment() {
         binding?.root?.let { Navigation.findNavController(it).navigate(R.id.toDownloadingFragment) }
     }
 

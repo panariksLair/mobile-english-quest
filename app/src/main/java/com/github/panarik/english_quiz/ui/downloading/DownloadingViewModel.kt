@@ -18,7 +18,7 @@ class DownloadingViewModel : ViewModel() {
         quiz.observe(fragment.viewLifecycleOwner) {
             if (it == null) {
                 Toast.makeText(fragment.context, "Received empty Quiz", LENGTH_SHORT).show()
-                downloadQuiz()
+                buildQuiz()
             } else {
                 fragment.startQuizFragment(it)
             }
@@ -26,8 +26,8 @@ class DownloadingViewModel : ViewModel() {
         return this
     }
 
-    fun downloadQuiz() {
-        QuizDownloader(fragment.activity, quiz).downloadQuiz()
+    fun buildQuiz() {
+        QuizBuilder(fragment.activity, quiz).buildQuiz()
     }
 
 }
