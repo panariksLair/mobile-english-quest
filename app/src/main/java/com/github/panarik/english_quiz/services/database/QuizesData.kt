@@ -1,6 +1,9 @@
 package com.github.panarik.english_quiz.services.database
 
+import android.util.Log
 import com.github.panarik.english_quiz.services.model.QuizGroup
+
+private const val TAG = "[QuizesData]"
 
 class QuizesData {
 
@@ -260,7 +263,7 @@ class QuizesData {
                 right_answer = "press"
             ),
             QuizEntity(
-                id = "IDIOM5",
+                id = "IDIOM6",
                 group = QuizGroup.IDIOM,
                 difficult = "B1",
                 topic = "English Idioms",
@@ -272,7 +275,7 @@ class QuizesData {
                 right_answer = "blind"
             ),
             QuizEntity(
-                id = "IDIOM5",
+                id = "IDIOM7",
                 group = QuizGroup.IDIOM,
                 difficult = "B1",
                 topic = "English Idioms",
@@ -284,7 +287,7 @@ class QuizesData {
                 right_answer = "busy"
             ),
             QuizEntity(
-                id = "IDIOM5",
+                id = "IDIOM8",
                 group = QuizGroup.IDIOM,
                 difficult = "B1",
                 topic = "English Idioms",
@@ -296,7 +299,7 @@ class QuizesData {
                 right_answer = "clear"
             ),
             QuizEntity(
-                id = "IDIOM5",
+                id = "IDIOM9",
                 group = QuizGroup.IDIOM,
                 difficult = "B1",
                 topic = "English Idioms",
@@ -308,7 +311,7 @@ class QuizesData {
                 right_answer = "fresh"
             ),
             QuizEntity(
-                id = "IDIOM5",
+                id = "IDIOM10",
                 group = QuizGroup.IDIOM,
                 difficult = "B1",
                 topic = "English Idioms",
@@ -320,7 +323,7 @@ class QuizesData {
                 right_answer = "slippery"
             ),
             QuizEntity(
-                id = "IDIOM5",
+                id = "IRREGULAR_VERBS1",
                 group = QuizGroup.IRREGULAR_VERBS,
                 difficult = "B1",
                 topic = "Irregular verbs",
@@ -332,7 +335,7 @@ class QuizesData {
                 right_answer = "found"
             ),
             QuizEntity(
-                id = "IDIOM5",
+                id = "IRREGULAR_VERBS2",
                 group = QuizGroup.IRREGULAR_VERBS,
                 difficult = "B1",
                 topic = "Irregular verbs",
@@ -344,7 +347,7 @@ class QuizesData {
                 right_answer = "hear"
             ),
             QuizEntity(
-                id = "IDIOM5",
+                id = "IRREGULAR_VERBS3",
                 group = QuizGroup.IRREGULAR_VERBS,
                 difficult = "B1",
                 topic = "Irregular verbs",
@@ -356,7 +359,7 @@ class QuizesData {
                 right_answer = "teach"
             ),
             QuizEntity(
-                id = "IDIOM5",
+                id = "VOCABULARY1",
                 group = QuizGroup.VOCABULARY,
                 difficult = "B1",
                 topic = "Vocabulary",
@@ -368,7 +371,7 @@ class QuizesData {
                 right_answer = "Court"
             ),
             QuizEntity(
-                id = "IDIOM5",
+                id = "VOCABULARY2",
                 group = QuizGroup.VOCABULARY,
                 difficult = "B1",
                 topic = "Vocabulary",
@@ -380,7 +383,7 @@ class QuizesData {
                 right_answer = "England"
             ),
             QuizEntity(
-                id = "IDIOM5",
+                id = "VOCABULARY3",
                 group = QuizGroup.VOCABULARY,
                 difficult = "B1",
                 topic = "Vocabulary",
@@ -392,7 +395,7 @@ class QuizesData {
                 right_answer = "China"
             ),
             QuizEntity(
-                id = "IDIOM5",
+                id = "VOCABULARY4",
                 group = QuizGroup.VOCABULARY,
                 difficult = "B1",
                 topic = "Vocabulary",
@@ -404,7 +407,7 @@ class QuizesData {
                 right_answer = "Middle East"
             ),
             QuizEntity(
-                id = "IDIOM5",
+                id = "SLANG1",
                 group = QuizGroup.SLANG,
                 difficult = "B1",
                 topic = "English slang",
@@ -416,47 +419,119 @@ class QuizesData {
                 right_answer = "how are you"
             ),
             QuizEntity(
-                id = "IDIOM5",
-                group = QuizGroup.,
+                id = "SLANG2",
+                group = QuizGroup.SLANG,
                 difficult = "B1",
-                topic = "English vocabulary",
-                summary = "Lets test your knowledge of English vocabulary",
-                question = "",
-                wrong_answer_1 = "",
-                wrong_answer_2 = "",
-                wrong_answer_3 = "",
-                right_answer = ""
+                topic = "English slang",
+                summary = "Lets test your knowledge of English slang",
+                question = "What does “you look beat” mean?",
+                wrong_answer_1 = "you look great",
+                wrong_answer_2 = "you look hot",
+                wrong_answer_3 = "you are dancing",
+                right_answer = "you look tired"
             ),
             QuizEntity(
-                id = "IDIOM5",
-                group = QuizGroup.,
+                id = "SLANG3",
+                group = QuizGroup.SLANG,
                 difficult = "B1",
-                topic = "English vocabulary",
-                summary = "Lets test your knowledge of English vocabulary",
-                question = "",
-                wrong_answer_1 = "",
-                wrong_answer_2 = "",
-                wrong_answer_3 = "",
-                right_answer = ""
+                topic = "English slang",
+                summary = "Lets test your knowledge of English slang",
+                question = "What does “let’s hang out” mean?",
+                wrong_answer_1 = "let’s go outside",
+                wrong_answer_2 = "hang our stuff",
+                wrong_answer_3 = "go out",
+                right_answer = "spend time together"
             ),
             QuizEntity(
-                id = "IDIOM5",
-                group = QuizGroup.,
+                id = "SLANG4",
+                group = QuizGroup.SLANG,
                 difficult = "B1",
-                topic = "English vocabulary",
-                summary = "Lets test your knowledge of English vocabulary",
-                question = "",
-                wrong_answer_1 = "",
-                wrong_answer_2 = "",
-                wrong_answer_3 = "",
-                right_answer = ""
+                topic = "English slang",
+                summary = "Lets test your knowledge of English slang",
+                question = "What does “chilled out” mean?",
+                wrong_answer_1 = "cold outside",
+                wrong_answer_2 = "very cold",
+                wrong_answer_3 = "frozen",
+                right_answer = "relaxed"
             ),
             QuizEntity(
-                id = "IDIOM5",
-                group = QuizGroup.,
+                id = "SLANG5",
+                group = QuizGroup.SLANG,
                 difficult = "B1",
-                topic = "English vocabulary",
-                summary = "Lets test your knowledge of English vocabulary",
+                topic = "English slang",
+                summary = "Lets test your knowledge of English slang",
+                question = "What does “have a blast” mean?",
+                wrong_answer_1 = "use a lot of fireworks",
+                wrong_answer_2 = "ignore someone",
+                wrong_answer_3 = "have a lot to eat",
+                right_answer = "have a lot of fun"
+            ),
+            QuizEntity(
+                id = "SLANG6",
+                group = QuizGroup.SLANG,
+                difficult = "B1",
+                topic = "English slang",
+                summary = "Lets test your knowledge of English slang",
+                question = "What does “have a crush” mean?",
+                wrong_answer_1 = "destroy",
+                wrong_answer_2 = "very tired",
+                wrong_answer_3 = "being depressed",
+                right_answer = "really liking someone"
+            ),
+            QuizEntity(
+                id = "SLANG7",
+                group = QuizGroup.SLANG,
+                difficult = "B1",
+                topic = "English slang",
+                summary = "Lets test your knowledge of English slang",
+                question = "What does “dumped” mean?",
+                wrong_answer_1 = "empty the garbage",
+                wrong_answer_2 = "to break up with someone",
+                wrong_answer_3 = "to throw something away",
+                right_answer = "drop something"
+            ),
+            QuizEntity(
+                id = "SLANG8",
+                group = QuizGroup.SLANG,
+                difficult = "B1",
+                topic = "English slang",
+                summary = "Lets test your knowledge of English slang",
+                question = "What does “looker” mean?",
+                wrong_answer_1 = "watcher",
+                wrong_answer_2 = "staring",
+                wrong_answer_3 = "witness",
+                right_answer = "handsome/beautiful/pretty"
+            ),
+            QuizEntity(
+                id = "SLANG9",
+                group = QuizGroup.SLANG,
+                difficult = "B1",
+                topic = "English slang",
+                summary = "Lets test your knowledge of English slang",
+                question = "What does “rip-off” mean?",
+                wrong_answer_1 = "take off",
+                wrong_answer_2 = "in peace",
+                wrong_answer_3 = "fly off",
+                right_answer = "cheat"
+            ),
+            QuizEntity(
+                id = "SLANG10",
+                group = QuizGroup.SLANG,
+                difficult = "B1",
+                topic = "English slang",
+                summary = "Lets test your knowledge of English slang",
+                question = "What does “kicks” mean?",
+                wrong_answer_1 = "walks quickly",
+                wrong_answer_2 = "hard",
+                wrong_answer_3 = "angry",
+                right_answer = "get rid of"
+            ),
+            QuizEntity(
+                id = "SLANG11",
+                group = QuizGroup.SLANG,
+                difficult = "B1",
+                topic = "English slang",
+                summary = "Lets test your knowledge of English slang",
                 question = "",
                 wrong_answer_1 = "",
                 wrong_answer_2 = "",
@@ -464,6 +539,7 @@ class QuizesData {
                 right_answer = ""
             ),
         )
+        Log.d(TAG, "Exporting ${quizes.size} Quizes.")
         return quizes
     }
 
