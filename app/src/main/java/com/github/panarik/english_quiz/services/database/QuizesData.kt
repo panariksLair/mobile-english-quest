@@ -12,8 +12,9 @@ class QuizesData {
         val quizes = listOf(
             QuizEntity(
                 id = "00q36nq6d9rgg0cfj4wthhwtqr",
-                difficult = "B1",
                 group = QuizGroup.GRAMMAR,
+                viewed = false,
+                difficult = "B1",
                 topic = "Contrasting Ideas: ‘Although,’ ‘Despite,’ and Others",
                 summary = "In this quiz, you will practice using contrasting ideas with words such as 'although', 'despite', and others. These words are used to show that one thing happens even though something else is true.",
                 question = "The new employee was very nervous on her first day at work _______________________ she had prepared well for the interview.",
@@ -25,6 +26,7 @@ class QuizesData {
             QuizEntity(
                 id = "011w4kjshsrgj0cfjfn94vqyx8",
                 group = QuizGroup.GRAMMAR,
+                viewed = false,
                 difficult = "B1",
                 topic = "Conditionals: Third and Mixed",
                 summary = "This quiz will test your understanding of third conditional and mixed conditionals in English grammar.",
@@ -37,6 +39,7 @@ class QuizesData {
             QuizEntity(
                 id = "02ecnwn3j5rgp0cfhnw9k3ytqc",
                 group = QuizGroup.GRAMMAR,
+                viewed = false,
                 difficult = "B1",
                 topic = "Conditionals: Zero, First, and Second",
                 summary = "In this quiz, you will practice using conditionals to talk about hypothetical situations and their consequences. You will learn how to use zero, first, and second conditionals to express different types of conditions and their outcomes.",
@@ -49,6 +52,7 @@ class QuizesData {
             QuizEntity(
                 id = "04swjh65cxrgj0cfj46a06vr7m",
                 group = QuizGroup.GRAMMAR,
+                viewed = false,
                 difficult = "B1",
                 topic = "Conditionals: Third and Mixed",
                 summary = "This quiz is designed to test your understanding of the third and mixed conditionals in English grammar. You will be presented with a series of questions that require you to use these conditionals correctly.",
@@ -61,6 +65,7 @@ class QuizesData {
             QuizEntity(
                 id = "0fsfdtw2ksrgp0cfj54a5b3h58",
                 group = QuizGroup.GRAMMAR,
+                viewed = false,
                 difficult = "B1",
                 topic = "Future Forms: ‘Will,’ ‘Be Going To,’ and Present Continuous",
                 summary = "In this quiz, you will practice using the future forms \"Will,\" \"Be Going To,\" and Present Continuous to talk about future plans and predictions.",
@@ -73,6 +78,7 @@ class QuizesData {
             QuizEntity(
                 id = "0rhzebbr39rgj0cfj4htb9d4vw",
                 group = QuizGroup.GRAMMAR,
+                viewed = false,
                 difficult = "B1",
                 topic = "Conditionals: Third and Mixed",
                 summary = "In this quiz, you will practice using third and mixed conditionals to talk about past hypothetical situations and their consequences.",
@@ -85,6 +91,7 @@ class QuizesData {
             QuizEntity(
                 id = "16c5qff3phrgj0cfjstaejq5p4",
                 group = QuizGroup.GRAMMAR,
+                viewed = false,
                 difficult = "B1",
                 topic = "British English vs. American English: Vocabulary",
                 summary = "Test your knowledge of British English vs. American English vocabulary!",
@@ -97,6 +104,7 @@ class QuizesData {
             QuizEntity(
                 id = "1d9bb99n55rgg0cfj3ftrvk22m",
                 group = QuizGroup.GRAMMAR,
+                viewed = false,
                 difficult = "B1",
                 topic = "Gradable and Non-gradable",
                 summary = "In English, adjectives can be either gradable or non-gradable. Gradable adjectives can be modified by intensifiers such as \"very\" or \"extremely\", while non-gradable adjectives cannot. In this quiz, you will practice identifying gradable and non-gradable adjectives.",
@@ -109,6 +117,7 @@ class QuizesData {
             QuizEntity(
                 id = "1jf3h84pthrgp0cfkteb0fvh9w",
                 group = QuizGroup.GRAMMAR,
+                viewed = false,
                 difficult = "B1",
                 topic = "Tenses: Be going to (Predictions)",
                 summary = "Practice using the \"be going to\" tense to make predictions about future events.",
@@ -121,6 +130,7 @@ class QuizesData {
             QuizEntity(
                 id = "1nqwrc3ntnrgp0cfj51vhdm9n8",
                 group = QuizGroup.GRAMMAR,
+                viewed = false,
                 difficult = "B1",
                 topic = "Contrasting Ideas: ‘Although,’ ‘Despite,’ and Others",
                 summary = "Contrasting ideas can be expressed using various conjunctions and phrases in English. This quiz will test your understanding of 'although', 'despite', and other similar expressions.",
@@ -133,6 +143,7 @@ class QuizesData {
             QuizEntity(
                 id = "1ph6y0fc4hrgp0cfj3ftzfwym4",
                 group = QuizGroup.GRAMMAR,
+                viewed = false,
                 difficult = "B1",
                 topic = "Different Uses of ‘Used To’",
                 summary = "In this quiz, you will practice using the verb \"used to\" in different contexts. \"Used to\" is a common phrase used to talk about past habits, customs, and things that were true in the past but are not true now.",
@@ -145,6 +156,7 @@ class QuizesData {
             QuizEntity(
                 id = "1qkag2s4wxrgm0cfj4nv7f2cc4",
                 group = QuizGroup.GRAMMAR,
+                viewed = false,
                 difficult = "B1",
                 topic = "Future Forms: ‘Will,’ ‘Be Going To,’ and Present Continuous",
                 summary = "In this quiz, you will practice using the future forms \"Will\", \"Be Going To\", and Present Continuous to talk about future plans and intentions.",
@@ -157,6 +169,7 @@ class QuizesData {
             QuizEntity(
                 id = "1x75sp9rahrgm0cfktf8pggh5w",
                 group = QuizGroup.GRAMMAR,
+                viewed = false,
                 difficult = "B1",
                 topic = "Tenses: Present Perfect and Past Simple",
                 summary = "In this quiz, you will practice using the Present Perfect and Past Simple tenses to talk about completed actions in the past.",
@@ -169,6 +182,7 @@ class QuizesData {
             QuizEntity(
                 id = "1zw0wdm60hrgj0cfk8yvjf8rhm",
                 group = QuizGroup.GRAMMAR,
+                viewed = false,
                 difficult = "B1",
                 topic = "Words: conjunctions",
                 summary = "Practice using conjunctions to connect words, phrases, or clauses in a sentence.",
@@ -181,6 +195,7 @@ class QuizesData {
             QuizEntity(
                 id = "215d3yac3drgm0cfjrkrgt75wm",
                 group = QuizGroup.GRAMMAR,
+                viewed = false,
                 difficult = "B1",
                 topic = "Sentence Structure: words order in Interrogative Sentences",
                 summary = "In this quiz, you will practice rearranging words to form correct interrogative sentences in English.",
@@ -193,6 +208,7 @@ class QuizesData {
             QuizEntity(
                 id = "21rs13eb0nrgg0cfj43s52vvzw",
                 group = QuizGroup.GRAMMAR,
+                viewed = false,
                 difficult = "B1",
                 topic = "Future Forms: ‘Will,’ ‘Be Going To,’ and Present Continuous",
                 summary = "In this quiz, you will practice using the future forms \"Will\", \"Be Going To\", and Present Continuous to talk about future plans and predictions.",
@@ -205,6 +221,7 @@ class QuizesData {
             QuizEntity(
                 id = "IDIOM1",
                 group = QuizGroup.IDIOM,
+                viewed = false,
                 difficult = "B1",
                 topic = "English Idioms",
                 summary = "Lets test your knowledge of English Idioms",
@@ -217,6 +234,7 @@ class QuizesData {
             QuizEntity(
                 id = "IDIOM2",
                 group = QuizGroup.IDIOM,
+                viewed = false,
                 difficult = "B1",
                 topic = "English Idioms",
                 summary = "Lets test your knowledge of English Idioms",
@@ -229,6 +247,7 @@ class QuizesData {
             QuizEntity(
                 id = "IDIOM3",
                 group = QuizGroup.IDIOM,
+                viewed = false,
                 difficult = "B1",
                 topic = "English Idioms",
                 summary = "Lets test your knowledge of English Idioms",
@@ -241,6 +260,7 @@ class QuizesData {
             QuizEntity(
                 id = "IDIOM4",
                 group = QuizGroup.IDIOM,
+                viewed = false,
                 difficult = "B1",
                 topic = "English Idioms",
                 summary = "Lets test your knowledge of English Idioms",
@@ -253,6 +273,7 @@ class QuizesData {
             QuizEntity(
                 id = "IDIOM5",
                 group = QuizGroup.IDIOM,
+                viewed = false,
                 difficult = "B1",
                 topic = "English Idioms",
                 summary = "Lets test your knowledge of English Idioms",
@@ -265,6 +286,7 @@ class QuizesData {
             QuizEntity(
                 id = "IDIOM6",
                 group = QuizGroup.IDIOM,
+                viewed = false,
                 difficult = "B1",
                 topic = "English Idioms",
                 summary = "Lets test your knowledge of English Idioms",
@@ -277,6 +299,7 @@ class QuizesData {
             QuizEntity(
                 id = "IDIOM7",
                 group = QuizGroup.IDIOM,
+                viewed = false,
                 difficult = "B1",
                 topic = "English Idioms",
                 summary = "Lets test your knowledge of English Idioms",
@@ -289,6 +312,7 @@ class QuizesData {
             QuizEntity(
                 id = "IDIOM8",
                 group = QuizGroup.IDIOM,
+                viewed = false,
                 difficult = "B1",
                 topic = "English Idioms",
                 summary = "Lets test your knowledge of English Idioms",
@@ -301,6 +325,7 @@ class QuizesData {
             QuizEntity(
                 id = "IDIOM9",
                 group = QuizGroup.IDIOM,
+                viewed = false,
                 difficult = "B1",
                 topic = "English Idioms",
                 summary = "Lets test your knowledge of English Idioms",
@@ -313,6 +338,7 @@ class QuizesData {
             QuizEntity(
                 id = "IDIOM10",
                 group = QuizGroup.IDIOM,
+                viewed = false,
                 difficult = "B1",
                 topic = "English Idioms",
                 summary = "Lets test your knowledge of English Idioms",
@@ -325,6 +351,7 @@ class QuizesData {
             QuizEntity(
                 id = "IRREGULAR_VERBS1",
                 group = QuizGroup.IRREGULAR_VERBS,
+                viewed = false,
                 difficult = "B1",
                 topic = "Irregular verbs",
                 summary = "Lets test your knowledge of English irregular verbs",
@@ -337,6 +364,7 @@ class QuizesData {
             QuizEntity(
                 id = "IRREGULAR_VERBS2",
                 group = QuizGroup.IRREGULAR_VERBS,
+                viewed = false,
                 difficult = "B1",
                 topic = "Irregular verbs",
                 summary = "Lets test your knowledge of English irregular verbs",
@@ -349,6 +377,7 @@ class QuizesData {
             QuizEntity(
                 id = "IRREGULAR_VERBS3",
                 group = QuizGroup.IRREGULAR_VERBS,
+                viewed = false,
                 difficult = "B1",
                 topic = "Irregular verbs",
                 summary = "Lets test your knowledge of English irregular verbs",
@@ -361,6 +390,7 @@ class QuizesData {
             QuizEntity(
                 id = "VOCABULARY1",
                 group = QuizGroup.VOCABULARY,
+                viewed = false,
                 difficult = "B1",
                 topic = "Vocabulary",
                 summary = "Lets test your knowledge of English vocabulary",
@@ -373,6 +403,7 @@ class QuizesData {
             QuizEntity(
                 id = "VOCABULARY2",
                 group = QuizGroup.VOCABULARY,
+                viewed = false,
                 difficult = "B1",
                 topic = "Vocabulary",
                 summary = "Lets test your knowledge of English vocabulary",
@@ -385,6 +416,7 @@ class QuizesData {
             QuizEntity(
                 id = "VOCABULARY3",
                 group = QuizGroup.VOCABULARY,
+                viewed = false,
                 difficult = "B1",
                 topic = "Vocabulary",
                 summary = "Lets test your knowledge of English vocabulary",
@@ -397,6 +429,7 @@ class QuizesData {
             QuizEntity(
                 id = "VOCABULARY4",
                 group = QuizGroup.VOCABULARY,
+                viewed = false,
                 difficult = "B1",
                 topic = "Vocabulary",
                 summary = "Lets test your knowledge of English vocabulary",
@@ -409,6 +442,7 @@ class QuizesData {
             QuizEntity(
                 id = "SLANG1",
                 group = QuizGroup.SLANG,
+                viewed = false,
                 difficult = "B1",
                 topic = "English slang",
                 summary = "Lets test your knowledge of English slang",
@@ -421,6 +455,7 @@ class QuizesData {
             QuizEntity(
                 id = "SLANG2",
                 group = QuizGroup.SLANG,
+                viewed = false,
                 difficult = "B1",
                 topic = "English slang",
                 summary = "Lets test your knowledge of English slang",
@@ -433,6 +468,7 @@ class QuizesData {
             QuizEntity(
                 id = "SLANG3",
                 group = QuizGroup.SLANG,
+                viewed = false,
                 difficult = "B1",
                 topic = "English slang",
                 summary = "Lets test your knowledge of English slang",
@@ -445,6 +481,7 @@ class QuizesData {
             QuizEntity(
                 id = "SLANG4",
                 group = QuizGroup.SLANG,
+                viewed = false,
                 difficult = "B1",
                 topic = "English slang",
                 summary = "Lets test your knowledge of English slang",
@@ -457,6 +494,7 @@ class QuizesData {
             QuizEntity(
                 id = "SLANG5",
                 group = QuizGroup.SLANG,
+                viewed = false,
                 difficult = "B1",
                 topic = "English slang",
                 summary = "Lets test your knowledge of English slang",
@@ -469,6 +507,7 @@ class QuizesData {
             QuizEntity(
                 id = "SLANG6",
                 group = QuizGroup.SLANG,
+                viewed = false,
                 difficult = "B1",
                 topic = "English slang",
                 summary = "Lets test your knowledge of English slang",
@@ -481,6 +520,7 @@ class QuizesData {
             QuizEntity(
                 id = "SLANG7",
                 group = QuizGroup.SLANG,
+                viewed = false,
                 difficult = "B1",
                 topic = "English slang",
                 summary = "Lets test your knowledge of English slang",
@@ -493,6 +533,7 @@ class QuizesData {
             QuizEntity(
                 id = "SLANG8",
                 group = QuizGroup.SLANG,
+                viewed = false,
                 difficult = "B1",
                 topic = "English slang",
                 summary = "Lets test your knowledge of English slang",
@@ -505,6 +546,7 @@ class QuizesData {
             QuizEntity(
                 id = "SLANG9",
                 group = QuizGroup.SLANG,
+                viewed = false,
                 difficult = "B1",
                 topic = "English slang",
                 summary = "Lets test your knowledge of English slang",
@@ -517,6 +559,7 @@ class QuizesData {
             QuizEntity(
                 id = "SLANG10",
                 group = QuizGroup.SLANG,
+                viewed = false,
                 difficult = "B1",
                 topic = "English slang",
                 summary = "Lets test your knowledge of English slang",
@@ -525,19 +568,7 @@ class QuizesData {
                 wrong_answer_2 = "hard",
                 wrong_answer_3 = "angry",
                 right_answer = "get rid of"
-            ),
-            QuizEntity(
-                id = "SLANG11",
-                group = QuizGroup.SLANG,
-                difficult = "B1",
-                topic = "English slang",
-                summary = "Lets test your knowledge of English slang",
-                question = "",
-                wrong_answer_1 = "",
-                wrong_answer_2 = "",
-                wrong_answer_3 = "",
-                right_answer = ""
-            ),
+            )
         )
         Log.d(TAG, "Exporting ${quizes.size} Quizes.")
         return quizes

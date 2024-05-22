@@ -70,12 +70,12 @@ class MainActivity : AppCompatActivity() {
     private fun setupDatabase() {
         Log.d(TAG, "Finding Quiz database...")
         lifecycleScope.launch {
-            val quizes = db.dao.getQuizes()
+            val quizes = db.dao.getAllQuizes()
             Log.d(TAG, "Quizes found: ${quizes.joinToString()}")
             if (quizes.isEmpty()) {
                 Log.d(TAG, "Quiz database is empty. Starting set database.")
                 db.dao.insertAll(QuizesData().getQuizes())
-                if (db.dao.getQuizes().isEmpty()) {
+                if (db.dao.getAllQuizes().isEmpty()) {
                     Log.e(TAG, "Error during setup Quiz database!")
                 }
             } else {

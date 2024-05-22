@@ -16,6 +16,7 @@ import okhttp3.Request
 import okhttp3.Response
 import java.io.IOException
 import java.util.concurrent.TimeUnit
+import kotlin.random.Random
 
 private const val TAG = "[QuizBuilder]"
 
@@ -38,10 +39,12 @@ class QuizBuilder(val fragment: FragmentActivity?, val liveData: MutableLiveData
             var quizes: List<QuizSession> = emptyList()
             while (quizes.isEmpty()) {
                 Log.d(TAG, "Trying to get quiz from database...")
-                quizes = activity.db.dao.getQuizes().map { it.toQuizSession() }
+                quizes = activity.db.dao.getAllQuizes().map { it.toQuizSession() }
                 if (quizes.isNotEmpty()) {
                     Log.d(TAG, "Quiz received successfully.")
-                    liveData.value = quizes[0]
+                    val quiz = quizes[Random.nextInt(quizes.lastIndex)]
+                    Log.d(TAG, "Created Quiz: ${quiz.quiz}")
+                    liveData.value = quiz
                 } else {
                     Log.d(TAG, "Can't receive Quiz. Waiting one second to database update.")
                     delay(1000)

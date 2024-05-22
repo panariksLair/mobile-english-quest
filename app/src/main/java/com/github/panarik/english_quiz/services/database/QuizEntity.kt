@@ -12,6 +12,7 @@ data class QuizEntity(
 
     @PrimaryKey val id: String,
     val group: QuizGroup,
+    val viewed: Boolean,
     val difficult: String,
     val topic: String,
     val summary: String,
