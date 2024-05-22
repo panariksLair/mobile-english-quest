@@ -3,6 +3,7 @@ package com.github.panarik.english_quiz.services.database
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.github.panarik.english_quiz.services.model.Quiz
+import com.github.panarik.english_quiz.services.model.QuizGroup
 import com.github.panarik.english_quiz.ui.home.model.QuizAnswer
 import com.github.panarik.english_quiz.ui.home.model.QuizSession
 
@@ -10,7 +11,9 @@ import com.github.panarik.english_quiz.ui.home.model.QuizSession
 data class QuizEntity(
 
     @PrimaryKey val id: String,
-
+    val group: QuizGroup,
+    val difficult: String,
+    val topic: String,
     val summary: String,
     val question: String,
     val wrong_answer_1: String,
