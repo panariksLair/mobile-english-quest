@@ -19,7 +19,7 @@ android {
         applicationId = "com.github.panarik.english_quiz"
         minSdk = 24
         targetSdk = 34
-        versionCode = 20101 // "1.3.1(01)" = 1_000_000 + 30_000 + 100 + 1
+        versionCode = 20101 // "1.3.1(1)" = 1_000_000 + 30_000 + 100 + 1
         versionName = "0.2.1(1)"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

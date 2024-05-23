@@ -11,19 +11,6 @@ class QuizesData {
 
         val quizes = listOf(
             QuizEntity(
-                id = "00q36nq6d9rgg0cfj4wthhwtqr",
-                group = QuizGroup.GRAMMAR,
-                viewed = false,
-                difficult = "B1",
-                topic = "Contrasting Ideas: ‘Although,’ ‘Despite,’ and Others",
-                summary = "In this quiz, you will practice using contrasting ideas with words such as 'although', 'despite', and others. These words are used to show that one thing happens even though something else is true.",
-                question = "The new employee was very nervous on her first day at work _______________________ she had prepared well for the interview.",
-                wrong_answer_1 = "Because",
-                wrong_answer_2 = "When",
-                wrong_answer_3 = "While",
-                right_answer = "Although"
-            ),
-            QuizEntity(
                 id = "011w4kjshsrgj0cfjfn94vqyx8",
                 group = QuizGroup.GRAMMAR,
                 viewed = false,
@@ -76,19 +63,6 @@ class QuizesData {
                 right_answer = "will finish"
             ),
             QuizEntity(
-                id = "0rhzebbr39rgj0cfj4htb9d4vw",
-                group = QuizGroup.GRAMMAR,
-                viewed = false,
-                difficult = "B1",
-                topic = "Conditionals: Third and Mixed",
-                summary = "In this quiz, you will practice using third and mixed conditionals to talk about past hypothetical situations and their consequences.",
-                question = "If I had studied harder, _______________ (to pass) the exam.",
-                wrong_answer_1 = "would pass",
-                wrong_answer_2 = "have passed",
-                wrong_answer_3 = "will pass",
-                right_answer = "would have passed"
-            ),
-            QuizEntity(
                 id = "16c5qff3phrgj0cfjstaejq5p4",
                 group = QuizGroup.GRAMMAR,
                 viewed = false,
@@ -121,7 +95,7 @@ class QuizesData {
                 difficult = "B1",
                 topic = "Tenses: Be going to (Predictions)",
                 summary = "Practice using the \"be going to\" tense to make predictions about future events.",
-                question = "What ____________________ happen if it continues to rain?",
+                question = "What ____________________(happen) if it continues to rain?",
                 wrong_answer_1 = "is going to happened",
                 wrong_answer_2 = "go to happen",
                 wrong_answer_3 = "been going to happen",
@@ -357,8 +331,8 @@ class QuizesData {
                 summary = "Lets test your knowledge of English irregular verbs",
                 question = "Have you _____ your lost dog yet?",
                 wrong_answer_1 = "find",
-                wrong_answer_2 = "",
-                wrong_answer_3 = "",
+                wrong_answer_2 = "was find",
+                wrong_answer_3 = "finded",
                 right_answer = "found"
             ),
             QuizEntity(
@@ -370,8 +344,8 @@ class QuizesData {
                 summary = "Lets test your knowledge of English irregular verbs",
                 question = "She spoke too softly. I couldn't ______ her.",
                 wrong_answer_1 = "heard",
-                wrong_answer_2 = "",
-                wrong_answer_3 = "",
+                wrong_answer_2 = "heared",
+                wrong_answer_3 = "listened",
                 right_answer = "hear"
             ),
             QuizEntity(
@@ -381,10 +355,10 @@ class QuizesData {
                 difficult = "B1",
                 topic = "Irregular verbs",
                 summary = "Lets test your knowledge of English irregular verbs",
-                question = "Mum taught our sister how to cook,but she didn't _____ us.",
+                question = "Mum taught our sister how to cook, but she didn't _____ us.",
                 wrong_answer_1 = "taught",
-                wrong_answer_2 = "",
-                wrong_answer_3 = "",
+                wrong_answer_2 = "like",
+                wrong_answer_3 = "teached",
                 right_answer = "teach"
             ),
             QuizEntity(

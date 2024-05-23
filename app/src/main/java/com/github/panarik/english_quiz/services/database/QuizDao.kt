@@ -17,6 +17,9 @@ interface QuizDao {
     @Query("SELECT * FROM quizes")
     suspend fun getAllQuizes(): List<QuizEntity>
 
+    @Query("SELECT * FROM quizes WHERE viewed = 0")
+    suspend fun getQuizes():List<QuizEntity>
+
     @Query("UPDATE quizes SET viewed = 'true' WHERE id=:id")
-    suspend fun markAsReadQuiz(id: String)
+    suspend fun markAsWatchedQuiz(id: String)
 }

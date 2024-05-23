@@ -14,6 +14,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.room.Room
 import com.github.panarik.english_quiz.databinding.ActivityMainBinding
+import com.github.panarik.english_quiz.services.AppFlags
 import com.github.panarik.english_quiz.services.database.QuizesData
 import com.github.panarik.english_quiz.services.database.QuizesDatabase
 import com.google.android.material.navigation.NavigationView
@@ -27,11 +28,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     val db by lazy {
-        Room.databaseBuilder(
+        val db = Room.databaseBuilder(
             applicationContext,
             QuizesDatabase::class.java,
             "my-quiz"
         ).build()
+        AppFlags.setupDatabase() // mark database flag as setup.
+        db
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

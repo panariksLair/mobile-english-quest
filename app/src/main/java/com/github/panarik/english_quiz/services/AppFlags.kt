@@ -9,6 +9,7 @@ object AppFlags {
     private const val AD_PERIOD_SESSIONS = 10 // for example each Ad per 10 sessions.
 
     private var sessionsCount = 0
+    private var databaseSetup = false
 
     fun isAdTime(gameState: GameStates?): Boolean {
         return if (sessionsCount >= AD_PERIOD_SESSIONS && gameState == GameStates.QUIZ_FINISHED_SUCCESS) {
@@ -33,4 +34,10 @@ object AppFlags {
     fun resetSession() {
         sessionsCount = 0
     }
+
+    fun setupDatabase() {
+        this.databaseSetup = true
+    }
+
+    fun isDatabaseReady(): Boolean = databaseSetup
 }

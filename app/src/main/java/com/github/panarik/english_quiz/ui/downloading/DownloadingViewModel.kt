@@ -29,8 +29,8 @@ class DownloadingViewModel : ViewModel() {
                 Log.d(TAG, "New Quiz Fragment has started.")
                 val activity = fragment.activity as MainActivity
                 activity.lifecycleScope.launch {
-                    Log.d(TAG, "Mark current Quiz as read.")
-                    activity.db.dao.markAsReadQuiz(it.sessionId)
+                    Log.d(TAG, "Mark current Quiz as watched.")
+                    activity.db.dao.markAsWatchedQuiz(it.sessionId)
                 }
             }
         }

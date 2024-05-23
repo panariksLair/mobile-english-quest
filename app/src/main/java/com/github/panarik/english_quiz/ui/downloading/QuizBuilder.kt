@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.github.panarik.english_quiz.MainActivity
+import com.github.panarik.english_quiz.services.AppFlags
 import com.github.panarik.english_quiz.ui.home.model.QuizSession
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -20,46 +21,74 @@ import kotlin.random.Random
 
 private const val TAG = "[QuizBuilder]"
 
-class QuizBuilder(val fragment: FragmentActivity?, val liveData: MutableLiveData<QuizSession?>) {
+class QuizBuilder(
+    val fragment: FragmentActivity?, private val liveData: MutableLiveData<QuizSession?>
+) {
 
-    private val client = OkHttpClient.Builder()
-        .readTimeout(30, TimeUnit.SECONDS)
-        .writeTimeout(30, TimeUnit.SECONDS)
-        .connectTimeout(30, TimeUnit.SECONDS)
-        .build()
+    private var quizesFromDatabase: List<QuizSession> = emptyList()
+
 
     fun buildQuiz() {
-        buildFromDatabase()
+        val activity = (fragment as MainActivity)
+        fragment.lifecycleScope.launch {
+            val quiz = buildFromDatabase(activity)
+            if (quiz == null) downloadQuiz()
+            else liveData.value = quiz
+        }
     }
 
-    private fun buildFromDatabase() {
-        val activity = fragment as MainActivity
-        activity.lifecycleScope.launch {
-            Log.d(TAG, "Getting quiz from database.")
-            var quizes: List<QuizSession> = emptyList()
-            while (quizes.isEmpty()) {
-                Log.d(TAG, "Trying to get quiz from database...")
-                quizes = activity.db.dao.getAllQuizes().map { it.toQuizSession() }
-                if (quizes.isNotEmpty()) {
-                    Log.d(TAG, "Quiz received successfully.")
-                    val quiz = quizes[Random.nextInt(quizes.lastIndex)]
-                    Log.d(TAG, "Created Quiz: ${quiz.quiz}")
-                    liveData.value = quiz
-                } else {
-                    Log.d(TAG, "Can't receive Quiz. Waiting one second to database update.")
-                    delay(1000)
-                    liveData.value = null
-                }
-            }
+    private suspend fun buildFromDatabase(activity: MainActivity): QuizSession? {
+        Log.d(TAG, "Getting Quiz from database...")
+        waitDatabaseSetup()
+        if (!AppFlags.isDatabaseReady()) {
+            Log.e(TAG, "Failed to wait database setup. Something went wrong")
+            return null
+        }
+        return attemptToGetFromDatabase(activity)
+    }
 
+    /**
+     * Database setup process in Main activity.
+     */
+    private suspend fun waitDatabaseSetup() {
+        var attempt = 1
+        while (attempt < 5 && !AppFlags.isDatabaseReady()) {
+            Log.d(TAG, "Wait database to setup... Attempt=$attempt")
+            delay(1000)
+            if (AppFlags.isDatabaseReady()) {
+                Log.d(TAG, "Database setup complete.")
+                return
+            } else {
+                attempt++
+            }
+        }
+    }
+
+    private suspend fun attemptToGetFromDatabase(activity: MainActivity): QuizSession? {
+        Log.d(TAG, "Trying to get quiz list from database.")
+        quizesFromDatabase = activity.db.dao.getQuizes().map { it.toQuizSession() }
+        return if (quizesFromDatabase.isNotEmpty()) {
+            Log.d(TAG, "Quiz received successfully.")
+            val quiz = if (quizesFromDatabase.size > 1) {
+                Log.d(TAG, "Choose random Quiz from database.")
+                quizesFromDatabase[Random.nextInt(quizesFromDatabase.lastIndex)]
+            } else {
+                Log.d(TAG, "Only one Quiz remaining in database. Choose last one.")
+                quizesFromDatabase[0]
+            }
+            Log.d(TAG, "Created Quiz: ${quiz.quiz}")
+            quiz
+        } else {
+            Log.d(TAG, "Database is empty.")
+            null
         }
     }
 
     private fun downloadQuiz() {
         Log.d(TAG, "Downloading new Quiz...")
-        val request = Request.Builder()
-            .url("https://mxkrc6qenp.eu-central-1.awsapprunner.com/quiz")
-            .build()
+        val client = OkHttpClient.Builder().connectTimeout(10, TimeUnit.SECONDS).build()
+        val request =
+            Request.Builder().url("https://mxkrc6qenp.eu-central-1.awsapprunner.com/quiz").build()
         client.newCall(request).enqueue(object : Callback {
 
             override fun onFailure(call: Call, e: IOException) {
@@ -81,6 +110,7 @@ class QuizBuilder(val fragment: FragmentActivity?, val liveData: MutableLiveData
                             liveData.value = quiz
                         } else {
                             Log.e(TAG, "Quiz is invalid.")
+                            Thread.sleep(1000)
                             liveData.value = null
                         }
                     }
